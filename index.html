@@ -117,6 +117,19 @@
             line-height: 28px;
             border: 1px solid #2d3f38;
         }
+        .context-box {
+            background: #1a2220;
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin-bottom: 18px;
+            border-left: 4px solid #6c9e8a;
+            color: #c0d6ce;
+            font-size: 15px;
+            line-height: 1.7;
+            white-space: pre-wrap;
+            font-weight: 400;
+            border: 1px solid #2a3a34;
+        }
         .q-text {
             font-size: 18px;
             line-height: 1.6;
@@ -402,6 +415,7 @@
                     <span class="q-number" id="qNum">প্রশ্ন ১</span>
                     <span id="qStatus" style="font-size:13px;color:#666680;">২৫ টি প্রশ্ন</span>
                 </div>
+                <div id="contextBox" class="context-box" style="display:none;"></div>
                 <div class="q-text" id="qText">লোড হচ্ছে...</div>
                 <div class="options" id="optionsContainer"></div>
                 <div id="explanationBox" style="display:none;" class="explanation"></div>
@@ -454,7 +468,7 @@
 
     <script>
         // ============================================================
-        //  DATA — 350 Questions parsed from the PDF
+        //  DATA — 350 Questions with context for "উদ্দীপক" passages
         // ============================================================
         const QUESTIONS = [{
             "id": 1,
@@ -518,13 +532,15 @@
             "explanation": "মাতৃ-আজ্ঞা বলতে মায়ের আদেশ বোঝানো হয়েছে।"
         }, {
             "id": 11,
-            "question": "‘অপরিচিতা’ গল্পে অনুপম চরিত্রের কোনটি রয়েছে?",
+            "context": "উদ্দীপকটি পড়ে ১১ ও ১২ নং প্রশ্নের উত্তর দাও:\n\nজ্বালিয়ে রেখেছি মনের প্রদীপ আমার\nভুলভরা বাগানে তোমার ছোঁয়ায় ফুটুক ফুল,\nস্বাভাবিক আঙুল দেখ পরগাছা আমাদের।",
+            "question": "উদ্দীপকে অনুপম চরিত্রের কোনটি রয়েছে?",
             "options": ["সৌন্দর্ধপ্রীতি", "দলালচলতা", "ভালবাসা", "বিরহ-বেদনা"],
             "correct": "ক",
             "explanation": "অনুপম চরিত্রে সৌন্দর্ধপ্রীতি রয়েছে।"
         }, {
             "id": 12,
-            "question": "‘অপরিচিতা’ গল্পে ন্যায় প্রকাশিত হচ্ছে – i. অনুশোচনা ii. অহমিকা iii. অনুনায়",
+            "context": "উদ্দীপকটি পড়ে ১১ ও ১২ নং প্রশ্নের উত্তর দাও:\n\nজ্বালিয়ে রেখেছি মনের প্রদীপ আমার\nভুলভরা বাগানে তোমার ছোঁয়ায় ফুটুক ফুল,\nস্বাভাবিক আঙুল দেখ পরগাছা আমাদের।",
+            "question": "উদ্দীপকে 'অপরিচিতা' গল্পের ন্যায় প্রকাশিত হচ্ছে – i. অনুশোচনা ii. অহমিকা iii. অনুনায়",
             "options": ["i ও ii", "i ও iii", "ii ও iii", "i, ii ও iii"],
             "correct": "খ",
             "explanation": "অনুশোচনা ও অনুনায় প্রকাশিত হয়েছে।"
@@ -716,42 +732,44 @@
             "explanation": "i ও iii কাজ মজিদের সংঘাতক কাজ।"
         }, {
             "id": 44,
-            "question": "উদ্দীপকের কিরম ‘লালসালু’ উপন্যাসের কোন চরিত্রের সাথে সাদৃশ্যপূর্ণ?",
+            "context": "উদ্দীপকটি পড়ে ৪৪ ও ৪৫ নং প্রশ্নের উত্তর দাও:\n\nকরিম অসুস্থ বিধায় তার ছেলেকে পাশের গ্রামের পীরের কাছে পানি পড়ার জন্য পাঠায়। সকলে বিশ্বাস পীরের পানি পড়ায় সকল রোগ ভালো হয়।",
+            "question": "উদ্দীপকের কিরম 'লালসালু' উপন্যাসের কোন চরিত্রের সাথে সাদৃশ্যপূর্ণ?",
             "options": ["আমেনা বিবি", "তানু বিবি", "হাসুনির মা", "রহিমা"],
             "correct": "ক",
             "explanation": "আমেনা বিবির সাথে সাদৃশ্যপূর্ণ।"
         }, {
             "id": 45,
-            "question": "উদ্দীপকে ‘লালসালু’ উপন্যাসের কোন দিকটি ফুটে উঠেছে? i. কুসংস্কার ii. অন্ধবিশ্বাস iii. পীরভক্তি",
+            "context": "উদ্দীপকটি পড়ে ৪৪ ও ৪৫ নং প্রশ্নের উত্তর দাও:\n\nকরিম অসুস্থ বিধায় তার ছেলেকে পাশের গ্রামের পীরের কাছে পানি পড়ার জন্য পাঠায়। সকলে বিশ্বাস পীরের পানি পড়ায় সকল রোগ ভালো হয়।",
+            "question": "উদ্দীপকে 'লালসালু' উপন্যাসের কোন দিকটি ফুটে উঠেছে? i. কুসংস্কার ii. অন্ধবিশ্বাস iii. পীরভক্তি",
             "options": ["i ও ii", "i ও iii", "ii ও iii", "i, ii ও iii"],
             "correct": "ঘ",
             "explanation": "তিনটি দিকই ফুটে উঠেছে।"
         }, {
             "id": 46,
+            "context": "উদ্দীপকটি পড়ে ৪৬ ও ৪৭ নং প্রশ্নের উত্তর দাও:\n\nবড়বলাক আত্মীয়ের বাড়ি যাওয়ার জন্য আনিস বন্ধুর দামি গাড়ি ধার নেয়। রাতে গাড়িটি চুরি হলে সে বিষয়টি বন্ধুকে জানায়। বন্ধু বলে কী আর করার? যা হবার তা তো হয়েছে।",
+            "question": "উদ্দীপকের আনিস 'নেকলেস' গল্পের কোন চরিত্রের প্রতিনিধিত্ব করে?",
+            "options": ["মাটিলদা", "কলাইসল", "ফকরস্টয়ার", "ম্যাকডানা"],
+            "correct": "ক",
+            "explanation": "মাটিলদার প্রতিনিধিত্ব করে।"
+        }, {
+            "id": 47,
+            "context": "উদ্দীপকটি পড়ে ৪৬ ও ৪৭ নং প্রশ্নের উত্তর দাও:\n\nবড়বলাক আত্মীয়ের বাড়ি যাওয়ার জন্য আনিস বন্ধুর দামি গাড়ি ধার নেয়। রাতে গাড়িটি চুরি হলে সে বিষয়টি বন্ধুকে জানায়। বন্ধু বলে কী আর করার? যা হবার তা তো হয়েছে।",
+            "question": "উদ্দীপকের তুলনায় 'নেকলেস' গল্পের পরিসমাপ্তি অধিক –",
+            "options": ["নাটকীয়", "স্বাভাবিক", "প্রত্যাশিত", "আকর্ষণীয়"],
+            "correct": "ঘ",
+            "explanation": "নেকলেস গল্পের পরিসমাপ্তি অধিক আকর্ষণীয়।"
+        }, {
+            "id": 48,
             "question": "‘নেকলেস’ গল্পের মাটিলদার পোশাক তৈরিতে কত খরচ হয়েছিল?",
             "options": ["চারশো ফ্রাঁ", "পাঁচশো ফ্রাঁ", "ছয়শো ফ্রাঁ", "সাতশো ফ্রাঁ"],
             "correct": "ক",
             "explanation": "পোশাক তৈরিতে চারশো ফ্রাঁ খরচ হয়েছিল।"
         }, {
-            "id": 47,
+            "id": 49,
             "question": "‘নেকলেস’ গল্পে মাদাম লোহৈসেলর দূরবস্থার কারণ কী?",
             "options": ["বিলাসিতা", "শৌখিনতা", "উচ্চাবিলাষ", "আরামপ্রিয়তা"],
             "correct": "গ",
             "explanation": "উচ্চাবিলাষই তার দূরবস্থার কারণ।"
-        }, {
-            "id": 48,
-            "question": "‘নেকলেস’ গল্পের মূল গল্পকারের পুরো নাম কোনটি?",
-            "options": ["Henri-Nicholas-Guy de Maupassant", "Henri-Albert-Guy de Maupassant", "Renri-Nicholas-Guy de Maupassant",
-                "Renri-Albert-Guy de Maupassant"
-            ],
-            "correct": "ক",
-            "explanation": "গী দ্য মোপাসাঁর পুরো নাম Henri-Nicholas-Guy de Maupassant।"
-        }, {
-            "id": 49,
-            "question": "গী দ্য মোপাসাঁ কত সালে মৃত্যুবরণ করেন?",
-            "options": ["১৮৯৩ সালে", "১৮৯৫ সালে", "১৮৯৭ সালে", "১৯০০ সালে"],
-            "correct": "ক",
-            "explanation": "গী দ্য মোপাসাঁ ১৮৯৩ সালে মৃত্যুবরণ করেন।"
         }, {
             "id": 50,
             "question": "‘বিরু-বৈভবই মানুষের প্রকৃত পরিচয় নয়’ – এই ভাবের প্রতিফলন ঘটেছে কোন রচনায়?",
@@ -1026,12 +1044,14 @@
             "explanation": "‘তাহারেই পড়ে মনে’ সংলাপ নিতর কবিতা।"
         }, {
             "id": 95,
-            "question": "‘সিরাজউদ্দৌলা’ নাটকের কোন চরিত্রের সাথে উদ্দীপকের বীরের সাদৃশ্য রয়েছে?",
+            "context": "উদ্দীপকটি পড়ে ৯৫ ও ৯৬ নং প্রশ্নের উত্তর দাও:\n\nঅন্যান্যদের সাথে কোনো আপোষ নয়। যুদ্ধে কাপুরুষ পলায়ন করলেও বীর লড়ে যায়।",
+            "question": "উদ্দীপকের বীরের সাথে 'সিরাজউদ্দৌলা' নাটকের কোন চরিত্রের মিল রয়েছে?",
             "options": ["মোহনলাল", "জগৎশেঠ", "মীরজাফর", "উমিচাঁদ"],
             "correct": "ক",
             "explanation": "মোহনলালের সাথে সাদৃশ্য রয়েছে।"
         }, {
             "id": 96,
+            "context": "উদ্দীপকটি পড়ে ৯৫ ও ৯৬ নং প্রশ্নের উত্তর দাও:\n\nঅন্যান্যদের সাথে কোনো আপোষ নয়। যুদ্ধে কাপুরুষ পলায়ন করলেও বীর লড়ে যায়।",
             "question": "‘বাঙলার নব লেখকদের প্রতি নিবেদন’ রচনাটি প্রথম কোন পত্রিকায় প্রকাশিত হয়?",
             "options": ["বঙ্গদর্শন", "সম্মাদ প্রভাকর", "সন্দেশ", "প্রচার"],
             "correct": "ক",
@@ -2699,6 +2719,16 @@
 
             document.getElementById('qNum').textContent = `প্রশ্ন ${state.sessionIndex + 1} / ${ids.length}`;
             document.getElementById('qStatus').textContent = state.mode === 'review' ? 'পর্যালোচনা মোড' : `সেশন #${getSessionNumber()}`;
+            
+            // context
+            const contextBox = document.getElementById('contextBox');
+            if (q.context) {
+                contextBox.textContent = q.context;
+                contextBox.style.display = 'block';
+            } else {
+                contextBox.style.display = 'none';
+            }
+
             document.getElementById('qText').textContent = q.question;
 
             const container = document.getElementById('optionsContainer');
@@ -2878,6 +2908,7 @@
                 main.innerHTML = `
               <div class="question-card" id="questionCard">
                 <div class="q-header"><span class="q-number" id="qNum">প্রশ্ন ১</span><span id="qStatus" style="font-size:13px;color:#666680;">২৫ টি প্রশ্ন</span></div>
+                <div id="contextBox" class="context-box" style="display:none;"></div>
                 <div class="q-text" id="qText">লোড হচ্ছে...</div>
                 <div class="options" id="optionsContainer"></div>
                 <div id="explanationBox" style="display:none;" class="explanation"></div>
@@ -2902,6 +2933,7 @@
                 main.innerHTML = `
               <div class="question-card" id="questionCard">
                 <div class="q-header"><span class="q-number" id="qNum">প্রশ্ন ১</span><span id="qStatus" style="font-size:13px;color:#666680;">২৫ টি প্রশ্ন</span></div>
+                <div id="contextBox" class="context-box" style="display:none;"></div>
                 <div class="q-text" id="qText">লোড হচ্ছে...</div>
                 <div class="options" id="optionsContainer"></div>
                 <div id="explanationBox" style="display:none;" class="explanation"></div>

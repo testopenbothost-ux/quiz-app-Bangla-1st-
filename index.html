@@ -1,0 +1,3028 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>বাংলা MCQ ক্যুইজ (ডার্ক)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans Bengali', system-ui, -apple-system, sans-serif;
+            background: #0f0f13;
+            color: #e4e4e7;
+            padding: 16px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .app-container {
+            max-width: 720px;
+            width: 100%;
+            margin: 0 auto;
+            background: #1c1c22;
+            border-radius: 32px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+            padding: 24px 20px 20px;
+            transition: all 0.2s;
+            border: 1px solid #2a2a30;
+        }
+        h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 6px;
+            color: #f0f0f4;
+        }
+        h1 small {
+            font-size: 14px;
+            font-weight: 400;
+            color: #8888a0;
+            margin-left: auto;
+        }
+        .subhead {
+            font-size: 14px;
+            color: #8888a0;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #2a2a32;
+            padding-bottom: 14px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .stats-row {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            font-size: 13px;
+            color: #b0b0c0;
+        }
+        .stats-row span {
+            background: #2a2a32;
+            padding: 2px 14px;
+            border-radius: 40px;
+            font-weight: 500;
+            color: #d0d0dd;
+        }
+        .progress-wrap {
+            background: #2a2a32;
+            border-radius: 40px;
+            height: 6px;
+            margin: 8px 0 18px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: #6c9e8a;
+            border-radius: 40px;
+            transition: width 0.3s ease;
+        }
+        .question-card {
+            animation: fadeUp 0.3s ease;
+        }
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .q-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+            font-size: 13px;
+            color: #8888a0;
+        }
+        .q-number {
+            font-weight: 600;
+            color: #6c9e8a;
+            background: #1e2a26;
+            padding: 0 14px;
+            border-radius: 40px;
+            font-size: 13px;
+            line-height: 28px;
+            border: 1px solid #2d3f38;
+        }
+        .q-text {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 22px;
+            font-weight: 500;
+            color: #f0f0f4;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+        .option {
+            background: #26262e;
+            border: 1.5px solid #33333c;
+            border-radius: 16px;
+            padding: 14px 18px;
+            font-size: 16px;
+            line-height: 1.5;
+            cursor: pointer;
+            transition: all 0.15s;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            color: #e0e0e8;
+        }
+        .option:hover {
+            background: #2e2e38;
+            border-color: #4a4a58;
+        }
+        .option.selected {
+            border-color: #6c9e8a;
+            background: #1e2e28;
+        }
+        .option.correct {
+            border-color: #4f8b74;
+            background: #1c2d26;
+        }
+        .option.wrong {
+            border-color: #b05a5a;
+            background: #2e1e1e;
+        }
+        .option.disabled {
+            cursor: default;
+            opacity: 0.7;
+        }
+        .option .label {
+            font-weight: 600;
+            color: #a0a0b5;
+            min-width: 24px;
+            flex-shrink: 0;
+        }
+        .option .text {
+            flex: 1;
+        }
+        .option .check {
+            margin-left: auto;
+            font-size: 18px;
+            color: #4f8b74;
+        }
+        .option .cross {
+            margin-left: auto;
+            font-size: 18px;
+            color: #b05a5a;
+        }
+        .action-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 6px;
+        }
+        .btn {
+            border: none;
+            background: #6c9e8a;
+            color: #0f0f13;
+            font-weight: 600;
+            font-size: 15px;
+            padding: 12px 28px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.15s;
+            flex: 1 1 auto;
+            min-width: 100px;
+            text-align: center;
+            font-family: inherit;
+            letter-spacing: 0.2px;
+        }
+        .btn:hover {
+            background: #5b8b77;
+            transform: scale(0.98);
+            color: #0f0f13;
+        }
+        .btn:active {
+            transform: scale(0.96);
+        }
+        .btn-outline {
+            background: transparent;
+            color: #6c9e8a;
+            border: 1.5px solid #6c9e8a;
+        }
+        .btn-outline:hover {
+            background: #1e2e28;
+            color: #8fc4ae;
+        }
+        .btn-secondary {
+            background: #2e2e38;
+            color: #d0d0dd;
+        }
+        .btn-secondary:hover {
+            background: #3a3a46;
+            color: #f0f0f4;
+        }
+        .btn-danger {
+            background: #b05a5a;
+            color: #0f0f13;
+        }
+        .btn-danger:hover {
+            background: #9a4a4a;
+        }
+        .btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        .score-box {
+            background: #1a1a22;
+            border-radius: 20px;
+            padding: 16px 20px;
+            margin: 16px 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            border: 1px solid #2a2a32;
+        }
+        .score-box .big {
+            font-size: 28px;
+            font-weight: 700;
+            color: #f0f0f4;
+        }
+        .score-box .detail {
+            color: #8888a0;
+            font-size: 14px;
+        }
+        .mode-tag {
+            display: inline-block;
+            background: #1e2a26;
+            color: #6c9e8a;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 2px 16px;
+            border-radius: 40px;
+            letter-spacing: 0.3px;
+            border: 1px solid #2d3f38;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 40px 16px;
+            color: #a0a0b5;
+        }
+        .empty-state .icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+        .empty-state h3 {
+            color: #f0f0f4;
+        }
+        .footer-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+            border-top: 1px solid #2a2a32;
+            padding-top: 18px;
+        }
+        .footer-actions .btn {
+            flex: 1;
+            min-width: 80px;
+            font-size: 13px;
+            padding: 10px 16px;
+        }
+        .explanation {
+            background: #1a2220;
+            border-radius: 16px;
+            padding: 14px 18px;
+            margin: 12px 0 16px;
+            font-size: 15px;
+            line-height: 1.6;
+            border-left: 4px solid #6c9e8a;
+            color: #c0d6ce;
+        }
+        .credit-footer {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 12px;
+            color: #666680;
+            border-top: 1px solid #2a2a32;
+            padding-top: 16px;
+            letter-spacing: 0.2px;
+        }
+        .credit-footer strong {
+            color: #8a8aa0;
+        }
+        .credit-footer .vibecode {
+            display: inline-block;
+            background: #1e2a26;
+            color: #6c9e8a;
+            padding: 0 10px;
+            border-radius: 40px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-left: 4px;
+            border: 1px solid #2d3f38;
+        }
+        @media (max-width: 500px) {
+            .app-container {
+                padding: 16px 12px;
+            }
+            .q-text {
+                font-size: 16px;
+            }
+            .option {
+                font-size: 14px;
+                padding: 12px 14px;
+            }
+            .btn {
+                font-size: 14px;
+                padding: 10px 18px;
+                min-width: 70px;
+            }
+            h1 {
+                font-size: 19px;
+            }
+            .score-box .big {
+                font-size: 22px;
+            }
+        }
+        @media (max-width: 380px) {
+            .option {
+                font-size: 13px;
+                padding: 10px 12px;
+                gap: 8px;
+            }
+            .q-text {
+                font-size: 15px;
+            }
+            .btn {
+                font-size: 12px;
+                padding: 8px 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="app-container">
+        <!-- header -->
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;">
+            <h1>
+                📘 বাংলা MCQ
+                <small>৩৫০</small>
+            </h1>
+            <span id="modeTag" class="mode-tag">প্র্যাকটিস</span>
+        </div>
+        <div class="subhead">
+            <div class="stats-row">
+                <span id="progressText">০ / ৩৫০</span>
+                <span id="wrongCount">❌ ০</span>
+            </div>
+            <span id="sessionLabel" style="font-size:13px;color:#666680;">সেশন #১</span>
+        </div>
+        <div class="progress-wrap">
+            <div id="progressBar" class="progress-bar" style="width:0%;"></div>
+        </div>
+
+        <!-- main area -->
+        <div id="mainArea">
+            <div class="question-card" id="questionCard">
+                <div class="q-header">
+                    <span class="q-number" id="qNum">প্রশ্ন ১</span>
+                    <span id="qStatus" style="font-size:13px;color:#666680;">২৫ টি প্রশ্ন</span>
+                </div>
+                <div class="q-text" id="qText">লোড হচ্ছে...</div>
+                <div class="options" id="optionsContainer"></div>
+                <div id="explanationBox" style="display:none;" class="explanation"></div>
+                <div class="action-row">
+                    <button class="btn" id="submitBtn">জমা দিন</button>
+                    <button class="btn btn-outline" id="nextBtn" style="display:none;">পরবর্তী →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- score / result -->
+        <div id="resultArea" style="display:none;">
+            <div class="score-box">
+                <div>
+                    <div class="detail">সেশন স্কোর</div>
+                    <div class="big" id="sessionScore">০/২৫</div>
+                </div>
+                <div style="text-align:right;">
+                    <div class="detail">সঠিক</div>
+                    <div style="font-size:20px;font-weight:600;color:#4f8b74;" id="correctCount">০</div>
+                </div>
+                <div style="text-align:right;">
+                    <div class="detail">ভুল</div>
+                    <div style="font-size:20px;font-weight:600;color:#b05a5a;" id="wrongCountDisplay">০</div>
+                </div>
+            </div>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                <button class="btn" id="nextSessionBtn">পরবর্তী সেশন</button>
+                <button class="btn btn-outline" id="reviewIncorrectBtn">❌ ভুল প্রশ্নগুলো</button>
+                <button class="btn btn-secondary" id="resetProgressBtn" style="flex:0.5;">⟳ রিসেট</button>
+            </div>
+        </div>
+
+        <!-- footer actions -->
+        <div class="footer-actions">
+            <button class="btn btn-secondary" id="resetAllBtn" style="flex:0.4;">⟳ সব রিসেট</button>
+            <button class="btn btn-outline" id="switchModeBtn" style="flex:0.6;">📋 ভুল পর্যালোচনা</button>
+        </div>
+
+        <!-- credit footer -->
+        <div class="credit-footer">
+            <span>Questions collected &amp; verified by <strong>Akash</strong></span>
+            <span style="margin:0 6px;">·</span>
+            <span>Vibecoded with</span>
+            <span class="vibecode">DeepSeek</span>
+            <span style="margin:0 4px;">&amp;</span>
+            <span class="vibecode">Claude Sonnet 3.5/5</span>
+        </div>
+    </div>
+
+    <script>
+        // ============================================================
+        //  DATA — 350 Questions parsed from the PDF
+        // ============================================================
+        const QUESTIONS = [{
+            "id": 1,
+            "question": "“এ গাড়ি আগে হইতে রিজাভ করা” কোন ভাষায় কল্যাণী কথা টি বলে?",
+            "options": ["বাংলা", "হিন্দি", "ইংরেজি", "ফারিসি"],
+            "correct": "গ",
+            "explanation": "কল্যাণী ইংরেজি ভাষায় কথা টি বলেছেন।"
+        }, {
+            "id": 2,
+            "question": "“আমরা গাড়ি ছাড়িব না” কল্যাণী কোন ভাষায় কথা টি বলেন?",
+            "options": ["বাংলা", "হিন্দি", "ইংরেজি", "ফারিসি"],
+            "correct": "গ",
+            "explanation": "কল্যাণী ইংরেজি ভাষায় বলেছেন।"
+        }, {
+            "id": 3,
+            "question": "বিয়ে‌র সময় মামার বয়স কত ছিল?",
+            "options": ["৩০ বছর", "৩৩ বছর", "৩৭ বছর", "২৯ বছর"],
+            "correct": "ঘ",
+            "explanation": "বিয়ে‌র সময় মামার বয়স ২৯ বছর ছিল।"
+        }, {
+            "id": 4,
+            "question": "‘অপরিচিতা’ গল্পে অনুপমের বিয়ে‌র বিষয়ে কার খবরটা মামার কাছে প্রবিষ্ট হয়?",
+            "options": ["মেয়ের", "বাপের অবর্তমান", "বৎসময়াদার", "শিক্ষা-দীক্ষার"],
+            "correct": "খ",
+            "explanation": "বাপের অবর্তমানের খবর মামার কাছে প্রবিষ্ট হয়।"
+        }, {
+            "id": 5,
+            "question": "‘অপরিচিতা’ গল্পে কল্যাণীর মাতৃ-আজ্ঞা বলতে কী বোঝায়?",
+            "options": ["মায়ের আদেশ", "মায়ের ইচ্ছা", "মায়ের সম্মতি", "মাতৃ হৃদয়ের প্রতি কতব্বু"],
+            "correct": "ক",
+            "explanation": "মাতৃ-আজ্ঞা বলতে মায়ের আদেশ বোঝানো হয়েছে।"
+        }, {
+            "id": 6,
+            "question": "কে অনুপমকে শিশুমুল ফুলের সাথে তুলনা করেন?",
+            "options": ["মামা", "বিনুদাদা", "পত্তিতমশাই", "হরিশ"],
+            "correct": "গ",
+            "explanation": "পত্তিতমশাই অনুপমকে শিশুমুল ফুলের সাথে তুলনা করেন।"
+        }, {
+            "id": 7,
+            "question": "‘অপরিচিতা’ গল্পে কাকে অনুপমের ‘ভোগে দেবতার ধন এজে’ বলা হয়েছে?",
+            "options": ["বিদাকে", "মামাকে", "হরিশকে", "শম্বুনাথকে"],
+            "correct": "খ",
+            "explanation": "মামাকে অনুপমের ‘ভোগে দেবতার ধন এজে’ বলা হয়েছে।"
+        }, {
+            "id": 8,
+            "question": "“মুতিমতী মাতৃআজ্ঞা” কাকে বলা হয়েছে?",
+            "options": ["কল্যাণীকে", "অনুপমকে", "শব্দুনাথ", "মামাকে"],
+            "correct": "ঘ",
+            "explanation": "মামাকে ‘মুতিমতী মাতৃআজ্ঞা’ বলা হয়েছে।"
+        }, {
+            "id": 9,
+            "question": "“মাতৃআজ্ঞা ঠিলয়া” এখানে মাতৃআজ্ঞা বলতে বোঝানো হয়েছে –",
+            "options": ["মাতৃভূমি", "মেয়েদের শিক্ষার ব্রত", "মামা", "মায়ের আদেশ"],
+            "correct": "ঘ",
+            "explanation": "এখানে মাতৃআজ্ঞা বলতে মায়ের আদেশ বোঝানো হয়েছে।"
+        }, {
+            "id": 10,
+            "question": "‘অপরিচিতা’ গল্পে কল্যাণীর মাতৃ-আজ্ঞা বলতে কী বোঝায়?",
+            "options": ["মায়ের আদেশ", "মায়ের ইচ্ছা", "মায়ের সম্মতি", "মাতৃ হৃদয়ের প্রতি কতব্বু"],
+            "correct": "ক",
+            "explanation": "মাতৃ-আজ্ঞা বলতে মায়ের আদেশ বোঝানো হয়েছে।"
+        }, {
+            "id": 11,
+            "question": "‘অপরিচিতা’ গল্পে অনুপম চরিত্রের কোনটি রয়েছে?",
+            "options": ["সৌন্দর্ধপ্রীতি", "দলালচলতা", "ভালবাসা", "বিরহ-বেদনা"],
+            "correct": "ক",
+            "explanation": "অনুপম চরিত্রে সৌন্দর্ধপ্রীতি রয়েছে।"
+        }, {
+            "id": 12,
+            "question": "‘অপরিচিতা’ গল্পে ন্যায় প্রকাশিত হচ্ছে – i. অনুশোচনা ii. অহমিকা iii. অনুনায়",
+            "options": ["i ও ii", "i ও iii", "ii ও iii", "i, ii ও iii"],
+            "correct": "খ",
+            "explanation": "অনুশোচনা ও অনুনায় প্রকাশিত হয়েছে।"
+        }, {
+            "id": 13,
+            "question": "পরিবারে অনুপমের আসল অভিভাবক কে?",
+            "options": ["মা", "বাবা", "মামা", "বিনুদা"],
+            "correct": "গ",
+            "explanation": "অনুপমের আসল অভিভাবক হলেন মামা।"
+        }, {
+            "id": 14,
+            "question": "অনুপমের বাবার প্রথম অবকাশ ছিল কোনটি?",
+            "options": ["তীর্থে", "চাকুরে থেকে অবসর", "মৃত্যু", "সংহিতা পাঠ"],
+            "correct": "গ",
+            "explanation": "অনুপমের বাবার প্রথম অবকাশ ছিল মৃত্যু।"
+        }, {
+            "id": 15,
+            "question": "কে পাথর হইয়া গেলা...?",
+            "options": ["মিজদ", "রহিমা", "বিলাসী", "সিরাজ"],
+            "correct": "গ",
+            "explanation": "বিলাসী পাথর হইয়া গেলেন।"
+        }, {
+            "id": 16,
+            "question": "গ্রামের মধ্যে মুতুঞ্জের ছিল এমন সুনাম। ‘সুনাম’ কথাটা কোন অর্থে ব্যবহৃত হচ্ছে?",
+            "options": ["সুনাম", "অপমান", "খ্যাতি", "দুর্নাম"],
+            "correct": "গ",
+            "explanation": "‘সুনাম’ কথাটা খ্যাতি অর্থে ব্যবহৃত হচ্ছে।"
+        }, {
+            "id": 17,
+            "question": "‘বিলাসী’ গল্পে বিলাসী কিসের প্রতীক?",
+            "options": ["প্রেমিনভর্তা", "বিনয়ের", "কুৎসার", "সাহিসকতার"],
+            "correct": "ক",
+            "explanation": "বিলাসী প্রেমিনভর্তার প্রতীক।"
+        }, {
+            "id": 18,
+            "question": "‘বিলাসী’ গল্পটি প্রথম প্রকাশিত হয় মার্সিক ‘ভারতী’ পত্রিকার কোন সংখ্যায়?",
+            "options": ["বৈশাখ ১৩২৬", "জৈষ্ঠ ১৩২৬", "বৈশাখ ১৩২৫", "জৈষ্ঠ ১৩২৬"],
+            "correct": "গ",
+            "explanation": "‘বিলাসী’ গল্পটি প্রথম প্রকাশিত হয় বৈশাখ ১৩২৫ সংখ্যায়।"
+        }, {
+            "id": 19,
+            "question": "কে মুতুঞ্জের চিকিৎসা করেন?",
+            "options": ["বিলাসী", "ন্যাদু", "জ্ঞাতি খুড়া", "বুড়ুয়া মালো"],
+            "correct": "ঘ",
+            "explanation": "বুড়ুয়া মালো মুতুঞ্জের চিকিৎসা করেন।"
+        }, {
+            "id": 20,
+            "question": "“ওরে বাপের! আমি একলা থাকতে পারব না” উক্তিটিতে প্রকাশিত হয়েছে –",
+            "options": ["মৃত্যুভীতি", "আত্মতৈম", "স্বামীভক্তি", "স্বামীর প্রতি শোক"],
+            "correct": "খ",
+            "explanation": "উক্তিটিতে আত্মতৈম প্রকাশিত হয়েছে।"
+        }, {
+            "id": 21,
+            "question": "‘বিলাসী’ গল্পে ‘এ আবার একটা কী কথা’ বলতে কী বোঝানো হয়েছে?",
+            "options": ["মুতুঞ্জের অপরাধ", "বিলাসীর স্বভাব পরায়ণতা", "নারী লোকের গায়ে হাত না দেওয়া", "সাপুড়ে মেয়েকে নিকা করা"],
+            "correct": "গ",
+            "explanation": "নারী লোকের গায়ে হাত না দেওয়া বোঝানো হয়েছে।"
+        }, {
+            "id": 22,
+            "question": "‘সনাতন হিন্দু এ কুসংস্কার মানে না’ এখানে কুসংস্কার বলতে কোনটি বোঝানো হয়েছে?",
+            "options": ["অপরাধ", "সতীদাহ প্রথা", "নারীর গায়ে হাত দেওয়া যাবে না", "জাতিভেদ প্রথা"],
+            "correct": "গ",
+            "explanation": "নারীর গায়ে হাত দেওয়া যাবে না – এটিই কুসংস্কার।"
+        }, {
+            "id": 23,
+            "question": "বিলাসী গল্পে নাভার কয়টি শেথর কথা উল্লেখ আছে?",
+            "options": ["০২টি", "০৩টি", "০৪টি", "০৫টি"],
+            "correct": "ক",
+            "explanation": "নাভার ০২টি শেথর কথা উল্লেখ আছে।"
+        }, {
+            "id": 24,
+            "question": "বিলাসী গল্পে ‘মহেনের কাহিনী’ বলতে বোঝানো হয়েছে –",
+            "options": ["মহানুভবতার কাহিনী", "উদারতার কাহিনী", "ধামিকতার কাহিনী", "নীচতার কাহিনী"],
+            "correct": "ঘ",
+            "explanation": "‘মহেনের কাহিনী’ বলতে নীচতার কাহিনী বোঝানো হয়েছে।"
+        }, {
+            "id": 25,
+            "question": "‘বাঙালির বিষ’ কথাটি বলতে শরৎচন্দ্র বুঝিয়েছেন –",
+            "options": ["জীবনঘাতী বিষক্রিয়া", "কঠিন প্রতিশোধশুহা", "ক্ষণস্থায়ী ক্রোধ", "অনিঃশেষ বিষদ্বেষ"],
+            "correct": "ঘ",
+            "explanation": "‘বাঙালির বিষ’ বলতে অনিঃশেষ বিষদ্বেষ বুঝিয়েছেন।"
+        }, {
+            "id": 26,
+            "question": "‘বিলাসী’ গল্পে সাপ ধরার বায়না এলে বিলাসী কী করত?",
+            "options": ["উৎসাহ দিত", "নিরুৎসাহিত করত", "বাধা দিত", "ভয় দেখাত"],
+            "correct": "গ",
+            "explanation": "বিলাসী বাধা দিত।"
+        }, {
+            "id": 27,
+            "question": "“ইহা আর এক শক্তি” – উক্তিটিতে কোন শক্তির কথা বলা হয়েছে?",
+            "options": ["ভালোবাসা", "বিধি-ব্যবস্থা", "বৎস মর্যাদা", "বিষহরির আন্তা"],
+            "correct": "ক",
+            "explanation": "ভালোবাসার কথা বলা হয়েছে।"
+        }, {
+            "id": 28,
+            "question": "বিললাম, ‘পোঁছে দিতে হবে না, শুধু আলোটা দাও’ – উক্তিটিতে নাড়ার যে মনোভাব প্রকাশ পেয়েছে –",
+            "options": ["তীব্রতা", "সাহসিকতা", "আত্মসচেতনবোধ", "আশঙ্কা"],
+            "correct": "গ",
+            "explanation": "আত্মসচেতনবোধ প্রকাশ পেয়েছে।"
+        }, {
+            "id": 29,
+            "question": "চিল্লিশর কোটা পার হয়েছে কার?",
+            "options": ["অনুপমের মামা", "শম্বুনাথ সেন", "ন্যাড়া", "মৃত্যুঞ্জয়"],
+            "correct": "গ",
+            "explanation": "ন্যাড়া চিল্লিশর কোটা পার হয়েছে।"
+        }, {
+            "id": 30,
+            "question": "‘লালসালু’ উপন্যাসে মজিদের আনা শাড়িটির বৈশিষ্ট –",
+            "options": ["গোলাপী রং, কালো পাড়", "বেগুনী রং, কালো পাড়", "সাদা রং, লাল পাড়", "হলুদ রং, সবুজ পাড়"],
+            "correct": "খ",
+            "explanation": "শাড়িটি বেগুনী রং ও কালো পাড় বিশিষ্ট।"
+        }, {
+            "id": 31,
+            "question": "মজিদ কোথা থেকে মহক্বতনগর গ্রামে আসে?",
+            "options": ["মতিগঞ্জ", "আউয়ালপুর", "গারো পাহাড়", "নাসিরনগর"],
+            "correct": "গ",
+            "explanation": "মজিদ গারো পাহাড় থেকে আসে।"
+        }, {
+            "id": 32,
+            "question": "গ্রামে মন্তব দিবয়েন কে?",
+            "options": ["মজিদ", "মোদোচ্ছের পীর", "আক্কাস", "কোনটি নয়"],
+            "correct": "ক",
+            "explanation": "মজিদ গ্রামে মন্তব দিবয়েন।"
+        }, {
+            "id": 33,
+            "question": "“নিকা করবি নাকি?” – উক্তিটি কার?",
+            "options": ["রহিমার", "হাসুনির মায়ের", "তাহেরর", "কাদেরের"],
+            "correct": "ঘ",
+            "explanation": "উক্তিটি কাদেরের।"
+        }, {
+            "id": 34,
+            "question": "সে যেন খাঁচায় ধরা পড়েছে। কে খাঁচায় ধরা পড়েছে?",
+            "options": ["রহিমা", "জমিলা", "আমেনা", "হাসুনির মা"],
+            "correct": "খ",
+            "explanation": "জমিলা খাঁচায় ধরা পড়েছে।"
+        }, {
+            "id": 35,
+            "question": "মজিদ আড়াচোখে লুকিয়ে লুকিয়ে দেখে কাকে?",
+            "options": ["রহিমা", "হাসুনির মা", "আমেনা বিবি", "জিমলা"],
+            "correct": "খ",
+            "explanation": "মজিদ হাসুনির মাকে দেখে।"
+        }, {
+            "id": 36,
+            "question": "আমেনা বিবির জন্য পানী পড়া আনে কে?",
+            "options": ["মিজদ", "তানু বিবি", "খালেক ব্যাপারী", "রহিমা"],
+            "correct": "ঘ",
+            "explanation": "রহিমা আমেনা বিবির জন্য পানী পড়া আনে।"
+        }, {
+            "id": 37,
+            "question": "আমেনা বিবিকে গোসল করে দেয় কে?",
+            "options": ["মিজদ", "তানু বিবি", "খালেক ব্যাপারী", "রহিমা"],
+            "correct": "ঘ",
+            "explanation": "রহিমা আমেনা বিবিকে গোসল করে দেয়।"
+        }, {
+            "id": 38,
+            "question": "‘লালসালু’ উপন্যাসে তানু বিবির স্বামীর নাম কী?",
+            "options": ["ধলা মিয়া", "কালু মিয়া", "খালেক ব্যাপারী", "রতন"],
+            "correct": "গ",
+            "explanation": "তানু বিবির স্বামী খালেক ব্যাপারী।"
+        }, {
+            "id": 39,
+            "question": "রহিমার কাছে সবকিছুর উচ্ছ্বে কোন?",
+            "options": ["স্বামীর ঘর", "স্বামীর ভালোবাসা", "স্বামীর সুখ", "আনুগত্য"],
+            "correct": "ঘ",
+            "explanation": "রহিমার কাছে সবকিছুর উচ্ছ্বে আনুগত্য।"
+        }, {
+            "id": 40,
+            "question": "আমেনা বিবি কোন রঙের চাদর পড়েছিল?",
+            "options": ["হলুদ", "সাদা", "কালো", "লাল"],
+            "correct": "ক",
+            "explanation": "আমেনা বিবি হলুদ চাদর পড়েছিল।"
+        }, {
+            "id": 41,
+            "question": "“তুমি আজ রাইতে তারাবি নামাজ পড়বা। তারপর মাজারে গিয়া তানার কাছে মাফ চাইবা” এখানে ‘তানার’ নাম –",
+            "options": ["মোনাজ্জর", "মোদাক্ষের", "মোদাক্ষের", "মোকাবের"],
+            "correct": "গ",
+            "explanation": "তানার নাম মোদাক্ষের।"
+        }, {
+            "id": 42,
+            "question": "‘লালসালু’ উপন্যাসটি প্রথম প্রকাশিত হয় কত সালে?",
+            "options": ["১৯৩৪", "১৯৬২", "১৯৪৮", "১৯৪৯"],
+            "correct": "গ",
+            "explanation": "‘লালসালু’ প্রথম প্রকাশিত হয় ১৯৪৮ সালে।"
+        }, {
+            "id": 43,
+            "question": "মজিদের সংঘাতক কাজ হলো – i. মিথ্যা কবরক মাজার বানালনা ii. কালনামকত কখয় পকড় বাঁচা iii. ধর্মের নামে জনজ স্বার্থ লাভ",
+            "options": ["i ও ii", "i ও iii", "ii ও iii", "i, ii ও iii"],
+            "correct": "খ",
+            "explanation": "i ও iii কাজ মজিদের সংঘাতক কাজ।"
+        }, {
+            "id": 44,
+            "question": "উদ্দীপকের কিরম ‘লালসালু’ উপন্যাসের কোন চরিত্রের সাথে সাদৃশ্যপূর্ণ?",
+            "options": ["আমেনা বিবি", "তানু বিবি", "হাসুনির মা", "রহিমা"],
+            "correct": "ক",
+            "explanation": "আমেনা বিবির সাথে সাদৃশ্যপূর্ণ।"
+        }, {
+            "id": 45,
+            "question": "উদ্দীপকে ‘লালসালু’ উপন্যাসের কোন দিকটি ফুটে উঠেছে? i. কুসংস্কার ii. অন্ধবিশ্বাস iii. পীরভক্তি",
+            "options": ["i ও ii", "i ও iii", "ii ও iii", "i, ii ও iii"],
+            "correct": "ঘ",
+            "explanation": "তিনটি দিকই ফুটে উঠেছে।"
+        }, {
+            "id": 46,
+            "question": "‘নেকলেস’ গল্পের মাটিলদার পোশাক তৈরিতে কত খরচ হয়েছিল?",
+            "options": ["চারশো ফ্রাঁ", "পাঁচশো ফ্রাঁ", "ছয়শো ফ্রাঁ", "সাতশো ফ্রাঁ"],
+            "correct": "ক",
+            "explanation": "পোশাক তৈরিতে চারশো ফ্রাঁ খরচ হয়েছিল।"
+        }, {
+            "id": 47,
+            "question": "‘নেকলেস’ গল্পে মাদাম লোহৈসেলর দূরবস্থার কারণ কী?",
+            "options": ["বিলাসিতা", "শৌখিনতা", "উচ্চাবিলাষ", "আরামপ্রিয়তা"],
+            "correct": "গ",
+            "explanation": "উচ্চাবিলাষই তার দূরবস্থার কারণ।"
+        }, {
+            "id": 48,
+            "question": "‘নেকলেস’ গল্পের মূল গল্পকারের পুরো নাম কোনটি?",
+            "options": ["Henri-Nicholas-Guy de Maupassant", "Henri-Albert-Guy de Maupassant", "Renri-Nicholas-Guy de Maupassant",
+                "Renri-Albert-Guy de Maupassant"
+            ],
+            "correct": "ক",
+            "explanation": "গী দ্য মোপাসাঁর পুরো নাম Henri-Nicholas-Guy de Maupassant।"
+        }, {
+            "id": 49,
+            "question": "গী দ্য মোপাসাঁ কত সালে মৃত্যুবরণ করেন?",
+            "options": ["১৮৯৩ সালে", "১৮৯৫ সালে", "১৮৯৭ সালে", "১৯০০ সালে"],
+            "correct": "ক",
+            "explanation": "গী দ্য মোপাসাঁ ১৮৯৩ সালে মৃত্যুবরণ করেন।"
+        }, {
+            "id": 50,
+            "question": "‘বিরু-বৈভবই মানুষের প্রকৃত পরিচয় নয়’ – এই ভাবের প্রতিফলন ঘটেছে কোন রচনায়?",
+            "options": ["আরনান", "অপরিচিতা", "নেকলেস", "আমার পথ"],
+            "correct": "গ",
+            "explanation": "‘নেকলেস’ গল্পে এই ভাবের প্রতিফলন ঘটেছে।"
+        }, {
+            "id": 51,
+            "question": "কে অনুপমকে শিশুমুল ফুলের সাথে তুলনা করেন?",
+            "options": ["মামা", "বিনুদাদা", "পত্তিতমশাই", "হরিশ"],
+            "correct": "গ",
+            "explanation": "পত্তিতমশাই অনুপমকে শিশুমুল ফুলের সাথে তুলনা করেন।"
+        }, {
+            "id": 52,
+            "question": "‘উচ্ছগা’ শব্দের অর্থ –",
+            "options": ["উচ্ছন্ন", "উৎসব", "উচ্ছুজল", "উৎসগে"],
+            "correct": "ঘ",
+            "explanation": "‘উচ্ছগা’ শব্দের অর্থ উৎসগে।"
+        }, {
+            "id": 53,
+            "question": "আখতারুজ্জামান ইলিয়াস জন্মগ্রহণ করেন –",
+            "options": ["গোপালগঞ্জের টুশিপাড়ায়", "আসামের করমগঞ্জে", "গাইবান্ধার গোশিয়া গ্রামে", "ঢাকার নবাবগঞ্জ খানায়"],
+            "correct": "গ",
+            "explanation": "আখতারুজ্জামান ইলিয়াস গাইবান্ধার গোশিয়া গ্রামে জন্মগ্রহণ করেন।"
+        }, {
+            "id": 54,
+            "question": "মুক্তিযুদ্ধকে ‘পাকিস্তানের ইন্টারনাল অ্যাশোয়ার’ বলেন –",
+            "options": ["জন এফ কেনেডি", "শহরি কসিজার", "রিচার্ড নিমন", "জেরান্দ শফাড"],
+            "correct": "খ",
+            "explanation": "শহরি কসিজার মুক্তিযুদ্ধকে ‘পাকিস্তানের ইন্টারনাল অ্যাশোয়ার’ বলেন।"
+        }, {
+            "id": 55,
+            "question": "সৈয়দ ওয়ালীউল্লাহর রচনা নয় –",
+            "options": ["কাঁদা নদী কাঁদা", "উজানে মৃত্যু", "চাঁদের অমাবস্যা", "চার অধ্যায়"],
+            "correct": "ঘ",
+            "explanation": "‘চার অধ্যায়’ সৈয়দ ওয়ালীউল্লাহর রচনা নয়।"
+        }, {
+            "id": 56,
+            "question": "শরৎচন্দ্র চট্টোপাধ্যায়ের প্রথম মুদ্রিত রচনা কোনটি?",
+            "options": ["দেনা পাওনা", "মন্দির", "বিলাসী", "গৃহদাহ"],
+            "correct": "খ",
+            "explanation": "শরৎচন্দ্রের প্রথম মুদ্রিত রচনা ‘মন্দির’।"
+        }, {
+            "id": 57,
+            "question": "কোন রচনায় খনার বচনের উল্লেখ রয়েছে?",
+            "options": ["অপরিচিতা", "বিলাসী", "মাসি-পিসি", "হেইনেকাট"],
+            "correct": "ঘ",
+            "explanation": "‘হেইনেকাট’ রচনায় খনার বচনের উল্লেখ রয়েছে।"
+        }, {
+            "id": 58,
+            "question": "কোনটি উপন্যাস?",
+            "options": ["কষেলখা", "দিবারাতির কাব্য", "কবিতার কথা", "একজন হত্যাকারীর গল্প"],
+            "correct": "খ",
+            "explanation": "‘দিবারাতির কাব্য’ একটি উপন্যাস।"
+        }, {
+            "id": 59,
+            "question": "‘মাসি-পিসি’ গল্পে ‘আয় না বাত হারামজাদা’ উক্তিটি করেছেন –",
+            "options": ["পিসি", "মাসি", "কানাই কৌিকদার", "দারোগাবু"],
+            "correct": "ক",
+            "explanation": "পিসি ‘আয় না বাত হারামজাদা’ উক্তিটি করেছেন।"
+        }, {
+            "id": 60,
+            "question": "তার করতলে পলিমাটির সৌরভ ছিল। অর্থাৎ তিনি ছিলেন –",
+            "options": ["জীর্ণবিদ", "শ্রমিক", "মালী", "কৃষক"],
+            "correct": "ঘ",
+            "explanation": "তিনি কৃষক ছিলেন।"
+        }, {
+            "id": 61,
+            "question": "ফাসিবিরোধী লেখক শিল্পী সংঘের পক্ষে ‘আকাল গ্রন্থ’ সম্পাদনা করেন –",
+            "options": ["সুকান্ত ভট্টাচার্য", "মানিক বন্দ্যোপাধ্যায়", "কাজী নজরুল ইসলাম", "আল মাহমুদ"],
+            "correct": "ক",
+            "explanation": "সুকান্ত ভট্টাচার্য ‘আকাল গ্রন্থ’ সম্পাদনা করেন।"
+        }, {
+            "id": 62,
+            "question": "‘রম্ভার কাঁদি’ শব্দের অর্থ কী?",
+            "options": ["ছেঁড়ে কাঁদন", "হৃদয় বিদারক", "খেজুরের ছড়া", "কলার ছড়া"],
+            "correct": "ঘ",
+            "explanation": "‘রম্ভার কাঁদি’ অর্থ কলার ছড়া।"
+        }, {
+            "id": 63,
+            "question": "‘সাহিত্য থেলা’ প্রবন্ধ অনুসারে সাহিত্যের উদ্দেশ্য কী?",
+            "options": ["আনন্দ দেওয়া", "শিক্ষা দেওয়া", "মনের রঞ্জন করা", "আত্মপ্রকাশ করা"],
+            "correct": "ক",
+            "explanation": "সাহিত্যের উদ্দেশ্য আনন্দ দেওয়া।"
+        }, {
+            "id": 64,
+            "question": "রোকেয়া সাখাওয়াত হোসেন কত সালে জন্মগ্রহণ করেন?",
+            "options": ["১৮৮২ সালে", "১৮৮৩ সালে", "১৮৮৫ সালে", "১৮৮০ সালে"],
+            "correct": "ঘ",
+            "explanation": "রোকেয়া সাখাওয়াত হোসেন ১৮৮০ সালে জন্মগ্রহণ করেন।"
+        }, {
+            "id": 65,
+            "question": "“আমাদের প্রাণ থাকতে নবাবের কোনো ক্ষতি হবে না” – উক্তিটি কার?",
+            "options": ["মোহনলাল", "মীরমর্দান", "মোহনলাল ও মীরমর্দান", "ফরাসি সাফর"],
+            "correct": "খ",
+            "explanation": "উক্তিটি মীরমর্দানের।"
+        }, {
+            "id": 66,
+            "question": "কে কোকেনের সন্তান? টাকা বেতনের কর্মচারী?",
+            "options": ["হারি", "মাটিন", "ওয়াটস", "কোনটিই নয়"],
+            "correct": "খ",
+            "explanation": "মাটিন কোকেনের সন্তান ও টাকা বেতনের কর্মচারী।"
+        }, {
+            "id": 67,
+            "question": "ন্যাড়ার মতে, হুমায়ুনের বাপের নাম কী?",
+            "options": ["বাবর", "তোগলক খাঁ", "আকবর", "কেউ না"],
+            "correct": "খ",
+            "explanation": "ন্যাড়ার মতে হুমায়ুনের বাপের নাম তোগলক খাঁ।"
+        }, {
+            "id": 68,
+            "question": "কানাইয়ের সে কাছারিবাড়ি যেতে চায় কে?",
+            "options": ["পিসি", "মাসি", "মাসি-পিসি", "কেউ না"],
+            "correct": "ক",
+            "explanation": "পিসি কানাইয়ের কাছে যেতে চায়।"
+        }, {
+            "id": 69,
+            "question": "ইউরোপে এখন অনেক লোক কিসের জন্য লেখে?",
+            "options": ["খ্যাতির জন্য", "টাকার জন্য", "স্বার্থের জন্য", "যশের জন্য"],
+            "correct": "খ",
+            "explanation": "ইউরোপে অনেক লোক টাকার জন্য লেখে।"
+        }, {
+            "id": 70,
+            "question": "‘চোড়ার বিষ তুই চন, চিতার বিষ চোড়াচর চদ’ – এখানে ‘তুই’ কে?",
+            "options": ["চউচ", "মনসা", "বিষহির চগাধরা", "চগাধরা"],
+            "correct": "ক",
+            "explanation": "এখানে ‘তুই’ বলতে চউচকে বোঝানো হয়েছে।"
+        }, {
+            "id": 71,
+            "question": "‘মাসি-পিসি’ গল্পে – “রসুই চালা বাঁপ এাঁট মাসি-পিসি বাইরে যায়” – এখানে রসুই চালা কী অর্থে ব্যবহৃত হয়েছে?",
+            "options": ["ভ্রুয়াং রুম", "রান্নার ঘর", "শোবার ঘর", "জিনিসপত্রের ঘর"],
+            "correct": "খ",
+            "explanation": "রসুই চালা অর্থ রান্নার ঘর।"
+        }, {
+            "id": 72,
+            "question": "বঙ্কিমচন্দ্র চট্টোপাধ্যায়ের প্রথম উপন্যাসের নাম কী?",
+            "options": ["বিষবৃক্ষ", "আনন্দমঠ", "দুর্গেশনন্দিনী", "সীতারাম"],
+            "correct": "গ",
+            "explanation": "বঙ্কিমচন্দ্রের প্রথম উপন্যাস ‘দুর্গেশনন্দিনী’।"
+        }, {
+            "id": 73,
+            "question": "‘সাহিত্য থেলা’ প্রবন্ধে ‘জনের কথার’ সমার্থক ভাব হলো – i. খবর দেওয়া ii. পাঠকের মন জয় iii. মুখস্থিবিদ্যা",
+            "options": ["i", "i ও ii", "ii ও iii", "i, ii ও iii"],
+            "correct": "ক",
+            "explanation": "‘জনের কথার’ অর্থ খবর দেওয়া।"
+        }, {
+            "id": 74,
+            "question": "‘বাঙালির বিষ’ কথাটি বলতে শরৎচন্দ্র বুঝিয়েছেন –",
+            "options": ["জীবনঘাতী বিষক্রিয়া", "কঠিন প্রতিশোধশুহা", "ক্ষণস্থায়ী ক্রোধ", "অনিঃশেষ বিষদ্বেষ"],
+            "correct": "ঘ",
+            "explanation": "‘বাঙালির বিষ’ বলতে অনিঃশেষ বিষদ্বেষ বুঝিয়েছেন।"
+        }, {
+            "id": 75,
+            "question": "সৈয়দ ওয়ালীউল্লাহ এর লেখনী নয় কোনটি?",
+            "options": ["নাটক", "উপন্যাস", "গল্প", "আত্মজীবনী"],
+            "correct": "ঘ",
+            "explanation": "সৈয়দ ওয়ালীউল্লাহ আত্মজীবনী লেখেননি।"
+        }, {
+            "id": 76,
+            "question": "‘প্রতিদান’ কবিতাটি কোন কাব্যগ্রন্থ থেকে সংকলন করা হয়েছে?",
+            "options": ["রাখালী", "বালুচর", "ধানেথত", "নকশী কাঁথার মাঠ"],
+            "correct": "খ",
+            "explanation": "‘প্রতিদান’ কবিতাটি ‘বালুচর’ কাব্যগ্রন্থ থেকে সংকলিত।"
+        }, {
+            "id": 77,
+            "question": "‘প্রতিদান’ কবিতায় ‘বুকভরা গান’ বলতে কী বোঝানো হয়েছে?",
+            "options": ["আশ্রয়", "উপহার", "সুখ", "ভালোবাসা"],
+            "correct": "ঘ",
+            "explanation": "‘বুকভরা গান’ বলতে ভালোবাসা বোঝানো হয়েছে।"
+        }, {
+            "id": 78,
+            "question": "“যে মোরে দিয়েছ বিষে ভরা বাণ, আমি দেই তোরে বুকভরা গান” – এখানে ‘বিষে ভরা বাণ’ কী অর্থ জ্ঞাপন করছে?",
+            "options": ["কটুকথা", "তীর", "মন্ত্র", "শর"],
+            "correct": "ক",
+            "explanation": "‘বিষে ভরা বাণ’ অর্থ কটুকথা।"
+        }, {
+            "id": 79,
+            "question": "‘ফেক্সফারি ১৯৬৯’ কবিতায় বর্ণমালাকে কিসের সাথে তুলনা করেছেন?",
+            "options": ["নক্ষত্র", "কৃষ্ণচূড়া", "পূর্ব বাংলা", "মানবিক জ্ঞান"],
+            "correct": "ক",
+            "explanation": "বর্ণমালাকে নক্ষত্রের সাথে তুলনা করেছেন।"
+        }, {
+            "id": 80,
+            "question": "“দেশের বুকে আঁধারের আসন মেলে” – এই পঙিক্ততে ‘আঁধার’ শব্দের আলঙ্কারিক অর্থ কী?",
+            "options": ["সংখ্যা", "বয়স", "তরুণ", "জরা"],
+            "correct": "ঘ",
+            "explanation": "‘আঁধার’ শব্দের অর্থ জরা।"
+        }, {
+            "id": 81,
+            "question": "‘ওটা ছিল নিশানা, অন্যের আর সুখের’ – এই নিশানাটি কী?",
+            "options": ["তালগাছ", "সাপ", "চাল বিবির সন্তান", "মাদার পীরের মাজার"],
+            "correct": "ক",
+            "explanation": "নিশানাটি ছিল তালগাছ।"
+        }, {
+            "id": 82,
+            "question": "জমিতে বীজ বপন এবং ফসল কাটার উপযুক্ত সময়কে বলে –",
+            "options": ["কর", "খাতু", "নববর্ষ", "পূর্ণিমা"],
+            "correct": "ক",
+            "explanation": "জমিতে বীজ বপন ও ফসল কাটার উপযুক্ত সময়কে ‘কর’ বলে।"
+        }, {
+            "id": 83,
+            "question": "‘সুন্দরের অনিবার্য অভুখান’ কবিতা কোন কবিতার চরণ?",
+            "options": ["ঐকতান", "আমার অনাদি অস্থি", "আমি কবিবদন্তির কথা বলছি", "কেক্লারি ১৯৬৯"],
+            "correct": "গ",
+            "explanation": "‘সুন্দরের অনিবার্য অভুখান’ – ‘আমি কবিবদন্তির কথা বলছি’ কবিতার চরণ।"
+        }, {
+            "id": 84,
+            "question": "‘তাহারেই পড়ে মনে’ কবিতায় কবি কাকে ব্যথা দিয়েছেন?",
+            "options": ["ফালুন", "প্রকৃতি", "পাঠক", "খাতুরাজ"],
+            "correct": "ঘ",
+            "explanation": "কবি খাতুরাজকে ব্যথা দিয়েছেন।"
+        }, {
+            "id": 85,
+            "question": "আঠারো বছর বয়সে প্রাণ – i. তীব্র ii. প্রখর iii. ঝুঁকিপূর্ণ",
+            "options": ["i ও ii", "i ও iii", "ii ও iii", "i, ii ও iii"],
+            "correct": "ঘ",
+            "explanation": "তিনটি বৈশিষ্ট্যই আঠারো বছর বয়সে প্রাণের।"
+        }, {
+            "id": 86,
+            "question": "‘সোনার তরী’ কবিতায় কী নিরপায় হয়ে দুঘারে ভাসে?",
+            "options": ["স্রোতধারা", "জলধারা", "স্টে", "নৌকা"],
+            "correct": "ঘ",
+            "explanation": "নৌকা নিরপায় হয়ে দুঘারে ভাসে।"
+        }, {
+            "id": 87,
+            "question": "‘সোনার তরী’ কবিতায় কেমন নদীতীরের কথা বলা হচ্ছে?",
+            "options": ["ফাঁকা", "ভরা", "বিবর্ণ", "শূন্য"],
+            "correct": "ঘ",
+            "explanation": "শূন্য নদীতীরের কথা বলা হয়েছে।"
+        }, {
+            "id": 88,
+            "question": "‘বিরুদ্ধবাদী’ কবিতায় কবি নিজেকে কাব সূত হিসাবে পরিচয় দিয়েছেন?",
+            "options": ["দূর্বাসা", "ইন্দ্রাণী", "বিশ্বান্দমি", "পরশুরাম"],
+            "correct": "খ",
+            "explanation": "কবি নিজেকে ইন্দ্রাণী হিসেবে পরিচয় দিয়েছেন।"
+        }, {
+            "id": 89,
+            "question": "‘প্রতিদান’ কবিতায় কেমন রজনী জাগার কথা বলা হয়েছে?",
+            "options": ["দুঃখের", "দীর্ঘ", "শঙ্কার", "শীতের"],
+            "correct": "খ",
+            "explanation": "দীর্ঘ রজনী জাগার কথা বলা হয়েছে।"
+        }, {
+            "id": 90,
+            "question": "‘সমস্ত শরীরে বর্ণমালা খোদাই করা’ – ‘কেক্লারি ১৯৬৯’ কবিতায় বর্ণিত কোন ব্যক্তির নির্দেশ?",
+            "options": ["বরকত", "সালাম", "রফিক", "শফিউর"],
+            "correct": "ক",
+            "explanation": "বরকতের শরীরে বর্ণমালা খোদাই করা ছিল।"
+        }, {
+            "id": 91,
+            "question": "রবীন্দ্রনাথের ‘সোনার তরী’ কবিতা কোন ছন্দে রচিত?",
+            "options": ["স্বরবৃত্ত", "অঙ্গরবৃত্ত", "মন্দাকান্তা", "মাত্রাবৃত্ত"],
+            "correct": "ঘ",
+            "explanation": "‘সোনার তরী’ মাত্রাবৃত্ত ছন্দে রচিত।"
+        }, {
+            "id": 92,
+            "question": "‘সোনার তরী’ কবিতায় ‘বাঁকা জল’ বলতে প্রতীকী অর্থ কী বোঝানো হয়েছে?",
+            "options": ["কবির ব্যক্তিসত্তা", "মহাকাল/কালম্বোত", "বাঁকানো পানি", "কবির সৃষ্টিকম"],
+            "correct": "খ",
+            "explanation": "‘বাঁকা জল’ বলতে মহাকাল/কালম্বোত বোঝানো হয়েছে।"
+        }, {
+            "id": 93,
+            "question": "কোন কাব্যগ্রন্থ রবীন্দ্রনাথ ঠাকুরের?",
+            "options": ["সারদা মঙ্গল, সোধের আসন, বঙ্গ সুন্দরী", "প্রদীপ, কনকাঞ্জিল, ভূব", "বিরহ বিলাপ, কুসুম কানন, অক্রমালা",
+                "কল্পনা, কখা, কচাতিল, সঞ্চিয়তা"
+            ],
+            "correct": "ঘ",
+            "explanation": "‘কল্পনা, কখা, কচাতিল, সঞ্চিয়তা’ রবীন্দ্রনাথের কাব্যগ্রন্থ।"
+        }, {
+            "id": 94,
+            "question": "কোনটি সংলাপ নিতর কবিতা?",
+            "options": ["আঠারো বছর বয়স", "বিরুদ্ধবাদী", "প্রতিদান", "তাহারেই পড়ে মনে"],
+            "correct": "ঘ",
+            "explanation": "‘তাহারেই পড়ে মনে’ সংলাপ নিতর কবিতা।"
+        }, {
+            "id": 95,
+            "question": "‘সিরাজউদ্দৌলা’ নাটকের কোন চরিত্রের সাথে উদ্দীপকের বীরের সাদৃশ্য রয়েছে?",
+            "options": ["মোহনলাল", "জগৎশেঠ", "মীরজাফর", "উমিচাঁদ"],
+            "correct": "ক",
+            "explanation": "মোহনলালের সাথে সাদৃশ্য রয়েছে।"
+        }, {
+            "id": 96,
+            "question": "‘বাঙলার নব লেখকদের প্রতি নিবেদন’ রচনাটি প্রথম কোন পত্রিকায় প্রকাশিত হয়?",
+            "options": ["বঙ্গদর্শন", "সম্মাদ প্রভাকর", "সন্দেশ", "প্রচার"],
+            "correct": "ক",
+            "explanation": "‘বাঙলার নব লেখকদের প্রতি নিবেদন’ প্রথম ‘বঙ্গদর্শন’ পত্রিকায় প্রকাশিত হয়।"
+        }, {
+            "id": 97,
+            "question": "“আমি আপনারদের সমগোত্রীয়” – উমিচাঁদ নিজেকে ইংরেজদের সমগোত্রীয় মনে করেন কেন?",
+            "options": ["ধর্মীয় চেতনা", "উত্তরই বিলেত থেকে আগত", "যেকোনোভাবে অর্থ উপার্জন", "নবাবের হাত থেকে আত্মরক্ষা"],
+            "correct": "গ",
+            "explanation": "যেকোনোভাবে অর্থ উপার্জনের জন্য উমিচাঁদ নিজেকে ইংরেজদের সমগোত্রীয় মনে করেন।"
+        }, {
+            "id": 98,
+            "question": "কার নেতৃত্বে ইংরেজরা চন্দনগরে ফরাসিদের বিরুদ্ধে যুদ্ধে জয়লাভ করে?",
+            "options": ["ওয়াটস", "ওয়াটসন", "ক্রাইভ", "নন্দকুমার"],
+            "correct": "খ",
+            "explanation": "ওয়াটসনের নেতৃত্বে ইংরেজরা জয়লাভ করে।"
+        }, {
+            "id": 99,
+            "question": "সিরাজের কোন অমাত্য নিরীশ্বরবাদী জন ধর্মের অনুসারী ছিলেন?",
+            "options": ["জগৎ শেঠ", "মীরন", "উমিচাঁদ", "রাজা রাজবল্লভ"],
+            "correct": "ক",
+            "explanation": "জগৎ শেঠ নিরীশ্বরবাদী জন ধর্মের অনুসারী ছিলেন।"
+        }, {
+            "id": 100,
+            "question": "কামচাটকা কোন মহাদেশের দেশ নামে পরিচিত?",
+            "options": ["ইলিশ", "তটিক", "রূপাটা", "মু মান"],
+            "correct": "ঘ",
+            "explanation": "কামচাটকা মু মান দেশ নামে পরিচিত।"
+        }, {
+            "id": 101,
+            "question": "‘যশ’ শব্দের অর্থ কী?",
+            "options": ["সুনাম", "দুর্নাম", "প্রার্থনা", "কল্যাণ"],
+            "correct": "ক",
+            "explanation": "‘যশ’ শব্দের অর্থ সুনাম।"
+        }, {
+            "id": 102,
+            "question": "নিচের কোনটি ধর্মবিরুদ্ধ অর্থ প্রকাশ করেছে?",
+            "options": ["নীতিহীনতার প্রভাব", "নীতির প্রতি অনুরাগ", "নীতি-নৈতিকতার বিরোধী", "সমাজ ও রাষ্ট্র বিরোধী"],
+            "correct": "গ",
+            "explanation": "নীতি-নৈতিকতার বিরোধী অর্থ ধর্মবিরুদ্ধ।"
+        }, {
+            "id": 103,
+            "question": "‘কোটেশন’ শব্দের বাংলা প্রতিশব্দ কোনটি?",
+            "options": ["কোটা", "উদ্ধৃতি", "উদাহরণ", "উপমা"],
+            "correct": "খ",
+            "explanation": "‘কোটেশন’ শব্দের বাংলা প্রতিশব্দ উদ্ধৃতি।"
+        }, {
+            "id": 104,
+            "question": "ভাষার মাধুর্য ও উৎকর্ষ বৃদ্ধি করে এমন গুণকে কী বলে?",
+            "options": ["ভাষার রূপভেদ", "অলংকার", "উপমা", "ছন্দ"],
+            "correct": "খ",
+            "explanation": "অলংকার ভাষার মাধুর্য ও উৎকর্ষ বৃদ্ধি করে।"
+        }, {
+            "id": 105,
+            "question": "‘বাঙলার নব লেখকদের প্রতি নিবেদন’ প্রবন্ধটি লেখকের কোন গ্রন্থের অন্তর্ভুক্ত?",
+            "options": ["বিবিধ প্রবন্ধ", "নানা প্রবন্ধ", "প্রবন্ধ সংগ্রহ", "প্রবন্ধ বিচিত্রা"],
+            "correct": "ক",
+            "explanation": "‘বাঙলার নব লেখকদের প্রতি নিবেদন’ ‘বিবিধ প্রবন্ধ’ গ্রন্থের অন্তর্ভুক্ত।"
+        }, {
+            "id": 106,
+            "question": "‘বাঙলার নব লেখকদের প্রতি নিবেদন’ প্রবন্ধের তাৎপর্যপূর্ণ দিক কোনটি?",
+            "options": ["সর্বকালীন দেশীয় আবেদন", "সর্বকালীন বৈশ্বিক আবেদন", "সর্বকালীন জাতীয় আবেদন", "সর্বকালীন রাষ্ট্রীয় আবেদন"],
+            "correct": "খ",
+            "explanation": "প্রবন্ধটির বৈশ্বিক আবেদন সর্বকালীন।"
+        }, {
+            "id": 107,
+            "question": "‘বাঙলার নব লেখকদের প্রতি নিবেদন’ প্রবন্ধে লেখক সর্বাপির কোন বিষয়ের উপর গুরুত্বারোপ করেছেন?",
+            "options": ["বস্তুনিষ্ঠতার উপর", "সুজনশীলতার উপর", "জাতীয়তাবাদের উপর", "মেধা ও মননের উপর"],
+            "correct": "ক",
+            "explanation": "লেখক বস্তুনিষ্ঠতার উপর গুরুত্বারোপ করেছেন।"
+        }, {
+            "id": 108,
+            "question": "নবীন লেখকরা বঙ্কিমচন্দ্র চট্টোপাধ্যায়ের পরামর্শ মানলে কারা উপকৃত হবেন?",
+            "options": ["প্রকাশক ও লেখক", "লেখক ও পাঠক", "পাঠক ও প্রকাশক", "প্রকাশক ও সাধারণ মানুষ"],
+            "correct": "খ",
+            "explanation": "লেখক ও পাঠক উপকৃত হবেন।"
+        }, {
+            "id": 109,
+            "question": "‘তিনি কোনো মতে কারো কে হকি বেন না।’ – ‘তিনি’ বলতে ‘অপরিচিতা’ গল্পে কাকে বোঝানো হয়েছে?",
+            "options": ["মামা", "হরিশ", "শম্বুনাথ", "অনুপম"],
+            "correct": "ক",
+            "explanation": "‘তিনি’ বলতে মামাকে বোঝানো হয়েছে।"
+        }, {
+            "id": 110,
+            "question": "‘কলিকাতার বাহিরে বাকি যে পৃথিবীটা আছে সমস্তকে তিনি মামা আদেপান্ত দ্বীপের অন্তর্গত বলিয়া জানেন।’ – এ উক্তিতে মামার চরিত্রের যে বৈশিষ্ট্য ফুটে উঠেছে তা হলো:",
+            "options": ["ধর্মনিষ্ঠা", "দেশপ্রেম", "কুসংস্কার", "কুপমস্তুকতা"],
+            "correct": "ঘ",
+            "explanation": "মামার কুপমস্তুকতা ফুটে উঠেছে।"
+        }, {
+            "id": 111,
+            "question": "‘অপরিচিতা’ গল্পে শম্বুনাথ বাবুর পরিচয় সম্পর্কে বলা হয়েছে – i. বয়স তার চম্বেমের কিন্তু এপারে বা ওপারে ii. চুল কাঁচা, গোঁফে পাক ধরতে আরম্ভ করেছে মাত্র iii. সুপুরুষ বলে মনে হয়",
+            "options": ["i ও ii", "i ও iii", "ii ও iii", "i, ii ও iii"],
+            "correct": "ঘ",
+            "explanation": "তিনটি পরিচয়ই সঠিক।"
+        }, {
+            "id": 112,
+            "question": "‘অপরিচিতা’ গল্পে ‘মকরমুথা’ বলে যার মুখাবয়ব বোঝানো হয়েছে –",
+            "options": ["কুমিরের", "ঘোড়ার", "সিংহের", "হাতির"],
+            "correct": "ক",
+            "explanation": "‘মকরমুথা’ বলতে কুমিরের মুখাবয়ব বোঝানো হয়েছে।"
+        }, {
+            "id": 113,
+            "question": "‘অপরিচিতা’ গল্পে বিয়ে‌র অনুষ্ঠানে গয়না মাপার মাধ্যমে কী প্রকাশ পেয়েছে?",
+            "options": ["সংকীর্ণতা", "চতুরতা", "হীনমান্যতা", "বিশ্বাসহীনতা"],
+            "correct": "ঘ",
+            "explanation": "বিশ্বাসহীনতা প্রকাশ পেয়েছে।"
+        }, {
+            "id": 114,
+            "question": "শ্বশুরের সামনে অনুপমের মাথা হেটে রাখার কারণ কী?",
+            "options": ["শ্বশুরের ব্যবহারে", "লজ্জায়", "বাবুর আয়োজন দেখে", "মামার গহনা পরীক্ষার কারণে"],
+            "correct": "ঘ",
+            "explanation": "মামার গহনা পরীক্ষার কারণে অনুপমের মাথা হেটে রাখা।"
+        }, {
+            "id": 115,
+            "question": "‘আমি যা বলব তাই হবে’ – ‘অপরিচিতা’ গল্পের উক্তিটি কার?",
+            "options": ["অনুপমের", "শম্বুনাথের", "কল্যাণীর", "মামার"],
+            "correct": "ঘ",
+            "explanation": "উক্তিটি মামার।"
+        }, {
+            "id": 116,
+            "question": "‘সাহিত্য থেলা’ প্রবন্ধে অনুচিৎ ‘জনের কথার’ সমার্থক ভাব হলো – i. খবর দেওয়া ii. পাঠকের মন জয় iii. মুখস্থিবিদ্যা",
+            "options": ["i", "i ও ii", "ii ও iii", "i, ii ও iii"],
+            "correct": "ক",
+            "explanation": "‘জনের কথার’ অর্থ খবর দেওয়া।"
+        }, {
+            "id": 117,
+            "question": "‘সাহিত্য থেলা’ প্রবন্ধ অনুসারে নিচের কোনটি অনুচিদের মূলভাবের সাথে সবচেয়ে বেশি সঙ্গতিপূর্ণ?",
+            "options": ["মনের শূন্যতা পূর্ণ করাই সাহিত্যের লক্ষ্য", "কল্যাণ সাধন করা সাহিত্যের প্রধান উদ্দেশ্য", "প্রশংসা অর্জনের জন্য সাহিত্যের সৃষ্টি",
+                "মনের সব সত্যকে রচনা সাহিত্যের বিশেষত্ব"
+            ],
+            "correct": "ঘ",
+            "explanation": "মনের সব সত্যকে রচনা সাহিত্যের বিশেষত্ব।"
+        }, {
+            "id": 118,
+            "question": "‘পরাখাঁ’ শব্দের অর্থ কোনটি?",
+            "options": ["পারতোষিক", "মনোজগৎ", "পরোপকার", "মনের জন"],
+            "correct": "গ",
+            "explanation": "‘পরাখাঁ’ শব্দের অর্থ পরোপকার।"
+        }, {
+            "id": 119,
+            "question": "প্রমথ চৌধুরীর পৈত্রিক নিবাস কোথায়?",
+            "options": ["ঢাকা জেলায়", "পাবনা জেলায়", "যশোর জেলায়", "কুমিল্লা জেলায়"],
+            "correct": "খ",
+            "explanation": "প্রমথ চৌধুরীর পৈত্রিক নিবাস পাবনা জেলায়।"
+        }, {
+            "id": 120,
+            "question": "প্রমথ চৌধুরীর বহু রচনা কী নামে প্রকাশিত হয়েছে?",
+            "options": ["হালখাতা নামে", "বীরবল নামে", "বনফুল নামে", "কালকুট নামে"],
+            "correct": "গ",
+            "explanation": "প্রমথ চৌধুরীর রচনা ‘বনফুল’ নামে প্রকাশিত হয়েছে।"
+        }, {
+            "id": 121,
+            "question": "‘সবুজপত্র’ পত্রিকাটি কত সাল থেকে প্রকাশিত হয়?",
+            "options": ["১৯১২ সাল থেকে", "১৯১৩ সাল থেকে", "১৯১৪ সাল থেকে", "১৯১৬ সাল থেকে"],
+            "correct": "গ",
+            "explanation": "‘সবুজপত্র’ ১৯১৪ সাল থেকে প্রকাশিত হয়।"
+        }, {
+            "id": 122,
+            "question": "‘রোদ্যাঁ’ কোন দেশের লেখক ছিলেন?",
+            "options": ["ইতালি", "আমেরিকান", "ফরাসি", "টানা"],
+            "correct": "গ",
+            "explanation": "রোদ্যাঁ ফরাসি লেখক ছিলেন।"
+        }, {
+            "id": 123,
+            "question": "‘এই পুতুল গড়া হয়েছে তার খেলা’ – ‘সাহিত্য খেলা’ প্রবন্ধে এ উক্তিতে কার কথা বলা হয়েছে?",
+            "options": ["প্রমথ চৌধুরীর", "বঙ্কিমের", "কবির", "রোদ্যাঁর"],
+            "correct": "ঘ",
+            "explanation": "রোদ্যাঁর কথা বলা হয়েছে।"
+        }, {
+            "id": 124,
+            "question": "শরৎচন্দ্রের প্রথম মুদ্রিত রচনা কোনটি?",
+            "options": ["মন্দির", "চরিত্রহীন", "দেনাপাওনা", "পল্লি-সমাজ"],
+            "correct": "ক",
+            "explanation": "শরৎচন্দ্রের প্রথম মুদ্রিত রচনা ‘মন্দির’।"
+        }, {
+            "id": 125,
+            "question": "মৃত্যুঞ্জয় কোন ক্লাসে পড়ত?",
+            "options": ["সেকেন্ড ক্লাস", "থার্ড ক্লাস", "ফোর্থ ক্লাস", "ফাস্ট ক্লাস"],
+            "correct": "ক",
+            "explanation": "মৃত্যুঞ্জয় সেকেন্ড ক্লাসে পড়ত।"
+        }, {
+            "id": 126,
+            "question": "‘উপরের আদালতের হুকুম’ বলতে কার নির্দেশে বোঝানো হয়েছে?",
+            "options": ["প্রশ্নীর", "হাইকোর্টের", "খুড়ার", "জজকোর্টের"],
+            "correct": "ক",
+            "explanation": "‘উপরের আদালতের হুকুম’ বলতে প্রশ্নীর নির্দেশে বোঝানো হয়েছে।"
+        }, {
+            "id": 127,
+            "question": "‘গ্রামের মধ্যে মুতুঞ্জের ছিল এমন সুনাম।’ – ‘সুনাম’ কথাটা কোন অর্থে ব্যবহৃত হয়েছে?",
+            "options": ["খ্যাতি", "সম্মান", "দুর্নাম", "প্রতাপ"],
+            "correct": "গ",
+            "explanation": "‘সুনাম’ কথাটা দুর্নাম অর্থে ব্যবহৃত হয়েছে।"
+        }, {
+            "id": 128,
+            "question": "‘বিলাসী’ গল্পে কে মৃত্যুঞ্জয়ের চিকিৎসা করে?",
+            "options": ["বুড়া মালো", "খুড়া", "বিলাসী", "বিখরি"],
+            "correct": "ক",
+            "explanation": "বুড়া মালো মৃত্যুঞ্জয়ের চিকিৎসা করে।"
+        }, {
+            "id": 129,
+            "question": "‘দোকানদের খাবার কিনিয়া খাওয়াইতে গ্রামের মধ্যে তাহার জোড়া ছিল না।’ – এখানে ‘জোড়া’ শব্দটি কী বোঝাতে ব্যবহৃত হয়েছে?",
+            "options": ["অভাব", "দুর্নাম", "বিকল্প", "সুনাম"],
+            "correct": "গ",
+            "explanation": "‘জোড়া’ শব্দটি বিকল্প অর্থে ব্যবহৃত হয়েছে।"
+        }, {
+            "id": 130,
+            "question": "‘যে বস্তুটি এই অসাধ্য সাধন করিয়া তলাইয়াছিল তাহার পরিচয় যদিও সেদিন পাই নাই, কিন্তু আর একদিন পাইয়াছিলাম।’ – এখানে ‘বস্তুটি’ বলতে ‘বিলাসী’ গল্পে কী বোঝানো হয়েছে?",
+            "options": ["মানবতা", "প্রেম", "সৌলিকতা", "সম্পদের সলভ"],
+            "correct": "খ",
+            "explanation": "‘বস্তুটি’ বলতে প্রেম বোঝানো হয়েছে।"
+        }, {
+            "id": 131,
+            "question": "‘ইহা আর এক শক্তি।’ – উক্তিতে কোন শক্তির কথা বলা হয়েছে?",
+            "options": ["ভালোবাসা", "বিধি-ব্যবস্থা", "বংশ মর্যাদা", "বিষহরির আন্তা"],
+            "correct": "ক",
+            "explanation": "ভালোবাসার কথা বলা হয়েছে।"
+        }, {
+            "id": 132,
+            "question": "‘বাবুরা, আমাকে একবার ছেড়ে দাও’ – বিলাসী কেন একথা বলেছিল?",
+            "options": ["প্রহরের ভয়ে", "মৃত্যুঞ্জয়কে দেখতে", "রুটিছেলা ঘের দেওয়ার জন্য", "নাড়াকে দেখতে চেয়ে"],
+            "correct": "গ",
+            "explanation": "রুটিছেলা ঘের দেওয়ার জন্য বিলাসী একথা বলেছিল।"
+        }, {
+            "id": 133,
+            "question": "সাগরের পানি বাষ্প হয়ে মেঘে পরিণত হয়। আবার সেই মেঘ বৃষ্টিকণা হয়ে সাগরে পতিত হয়। – উপরোক্ত বাক্য দুটি দ্বারা বোঝানো হয়েছে –",
+            "options": ["একে অপরের অনুসারী", "প্রেতকে আমরা পেররের", "একের কথা অন্যের অধিকার", "প্রত্যেকেই প্রত্যেকের নিকট ঋণী"],
+            "correct": "ঘ",
+            "explanation": "প্রত্যেকেই প্রত্যেকের নিকট ঋণী – এই বোধটি প্রকাশিত হয়েছে।"
+        }, {
+            "id": 134,
+            "question": "নারীদের শুধু রান্নাঘরেরই সীমাবদ্ধ রাখা উচিত নয়। কারণ এটা তাদের – i. অকর্মণ্য করে তোলে ii. মানসিক দাসত্ব প্রকাশ করে iii. স্বামীদের আরামপ্রিয়তা বৃদ্ধি করে",
+            "options": ["i", "i ও ii", "ii", "ii ও iii"],
+            "correct": "গ",
+            "explanation": "এটা তাদের মানসিক দাসত্ব প্রকাশ করে।"
+        }, {
+            "id": 135,
+            "question": "‘অর্ধাঙ্গী’ প্রবন্ধে বর্ণিত ‘নাদকর দণ্ড’ শব্দের অর্থ কী?",
+            "options": ["অধিকার ও মালিকানার বস্তু", "দময়ে আটক রাখার কৌশল", "তত্ত্ববয়ন করে তণরকৃত রণশ", "নতজানু ও বাধ্য করার অস্ত্র"],
+            "correct": "ঘ",
+            "explanation": "‘নাদকর দণ্ড’ অর্থ নতজানু ও বাধ্য করার অস্ত্র।"
+        }, {
+            "id": 136,
+            "question": "রোকেয়া সাখাওয়াত হোসেন বাংলা সাহিত্যে কী নামে বিশেষ পরিচিত?",
+            "options": ["মিসেস আরএস হোসেন", "বেগম রোকেয়া", "রোকেয়া সাখাওয়াত হোসেন", "বেগম রোকেয়া সাখাওয়াত হোসেন"],
+            "correct": "খ",
+            "explanation": "রোকেয়া সাখাওয়াত হোসেন ‘বেগম রোকেয়া’ নামে বিশেষ পরিচিত।"
+        }, {
+            "id": 137,
+            "question": "নিচের কোনটি ঐতিহাসিক চরিত্র সত্য ঘটনা অবলম্বনে রচিত?",
+            "options": ["পয়ার", "মিতচুর", "অবেরাধবাসিনী", "সুলতানার স্বপ্ন"],
+            "correct": "গ",
+            "explanation": "‘অবেরাধবাসিনী’ ঐতিহাসিক চরিত্র সত্য ঘটনা অবলম্বনে রচিত।"
+        }, {
+            "id": 138,
+            "question": "কোন রচনাটি রোকেয়া সাখাওয়াত হোসেনের নয়?",
+            "options": ["পয়ারাগ", "মিতচুর", "অবেরাধবাসিনী", "চক্রবাক"],
+            "correct": "ঘ",
+            "explanation": "‘চক্রবাক’ রোকেয়া সাখাওয়াত হোসেনের রচনা নয়।"
+        }, {
+            "id": 139,
+            "question": "‘ভগিনীদিগকে জানাইয়াছি যে, আমাদের একটা রোগ আছে – দাসত্ব।’ – রোকেয়া সাখাওয়াত হোসেন কোন রচনার মাধ্যমে এটি জানিয়েছেন?",
+            "options": ["নবদম্পতির ফেমালাপ", "অবেরাধবাসিনী", "সুলতানার স্বপ্ন", "স্ত্রীজাতির অবনতি"],
+            "correct": "ঘ",
+            "explanation": "‘স্ত্রীজাতির অবনতি’ রচনার মাধ্যমে তিনি এটি জানিয়েছেন।"
+        }, {
+            "id": 140,
+            "question": "রোকেয়া সাখাওয়াত হোসেন কোথায় মৃত্যুবরণ করেন?",
+            "options": ["কলকাতায়", "রংপুরে", "দিল্লিতে", "ঢাকায়"],
+            "correct": "ক",
+            "explanation": "রোকেয়া সাখাওয়াত হোসেন কলকাতায় মৃত্যুবরণ করেন।"
+        }, {
+            "id": 141,
+            "question": "‘ভগিনী’ শব্দ দ্বারা কী বোঝানো হয়েছে?",
+            "options": ["ভাগনী", "ভোগে", "ভাতিজ", "বোন"],
+            "correct": "ঘ",
+            "explanation": "‘ভগিনী’ শব্দ দ্বারা বোন বোঝানো হয়েছে।"
+        }, {
+            "id": 142,
+            "question": "কাজী নজরুল ইসলামকে কত সালে বাংলাদেশের নাগরিকত্ব প্রদান করা হয়?",
+            "options": ["১৯৭২ সালে", "১৯৭৫ সালে", "১৯৭৩ সালে", "১৯৭৬ সালে"],
+            "correct": "ঘ",
+            "explanation": "কাজী নজরুল ইসলামকে ১৯৭৬ সালে বাংলাদেশের নাগরিকত্ব প্রদান করা হয়।"
+        }, {
+            "id": 143,
+            "question": "কোনটি কাজী নজরুল ইসলামের রচনা নয়?",
+            "options": ["বলাকা", "বিদ্রোহের বাঁশি", "অগ্নিবীণা", "ছায়ানট"],
+            "correct": "ক",
+            "explanation": "‘বলাকা’ রবীন্দ্রনাথের রচনা, নজরুলের নয়।"
+        }, {
+            "id": 144,
+            "question": "‘যৌবনের গান’ প্রবন্ধের লেখক কাদের দেল?",
+            "options": ["তরুণ", "ধানী", "কর্মী", "বিদ্রোহী"],
+            "correct": "ক",
+            "explanation": "‘যৌবনের গান’ প্রবন্ধের লেখক তরুণদের দেল।"
+        }, {
+            "id": 145,
+            "question": "‘যৌবনের গান’-এ কোন নদী দুটির কথা বলা হয়েছে?",
+            "options": ["পদ্মা-মেঘনা", "মেঘনা-যমুনা", "পদ্মা-ভাগীরথী", "মেঘনা-সুরমা"],
+            "correct": "গ",
+            "explanation": "পদ্মা-ভাগীরথী নদী দুটির কথা বলা হয়েছে।"
+        }, {
+            "id": 146,
+            "question": "‘যৌবনের গান’ প্রবন্ধে পদ্মা-ভাগীরথীর মতো খরপ্লোতা বলে কার বাগীকে বোঝানো হয়েছে?",
+            "options": ["কিরব", "লক্ষণ সেনের", "বক্তার", "বখতিয়ার খিলজি"],
+            "correct": "ঘ",
+            "explanation": "বখতিয়ার খিলজির বাগীকে বোঝানো হয়েছে।"
+        }, {
+            "id": 147,
+            "question": "মোতাহের হোসেন চৌধুরী কত সালে জন্মগ্রহণ করেন?",
+            "options": ["১৯০১", "১৯০২", "১৯০৩", "১৯০৪"],
+            "correct": "গ",
+            "explanation": "মোতাহের হোসেন চৌধুরী ১৯০৩ সালে জন্মগ্রহণ করেন।"
+        }, {
+            "id": 148,
+            "question": "‘আশ্বিক’ শব্দের অর্থ কী?",
+            "options": ["সুপশর্গতজাত", "মনোজগৎক", "সংবেদনশীলতা", "শুনয়"],
+            "correct": "খ",
+            "explanation": "‘আশ্বিক’ শব্দের অর্থ মনোজগৎ।"
+        }, {
+            "id": 149,
+            "question": "মোতাহের হোসেন চৌধুরী বৃদ্ধিবৃত্তি চর্চার প্রসার ঘটাতে কোনটি প্রতিষ্ঠা করেন?",
+            "options": ["মুসলিম সাহিত্য সমাজ", "স্বদেশ আন্দোলন", "ব্রিটিশ বিরোধী আন্দোলন", "ফরোয়াজ আন্দোলন"],
+            "correct": "ক",
+            "explanation": "মোতাহের হোসেন চৌধুরী ‘মুসলিম সাহিত্য সমাজ’ প্রতিষ্ঠা করেন।"
+        }, {
+            "id": 150,
+            "question": "মোতাহের হোসেন চৌধুরী কাকে মনুষ্যদের প্রতীক করতে চেয়েছে?",
+            "options": ["নদীকে", "ধর্মকে", "বৃক্ষকে", "আত্মাকে"],
+            "correct": "গ",
+            "explanation": "মোতাহের হোসেন চৌধুরী বৃক্ষকে মনুষ্যদের প্রতীক করতে চেয়েছে।"
+        }, {
+            "id": 151,
+            "question": "‘প্রকৃতির যে ধর্ম মানুষের সে ধর্ম’ – উক্তিটি দ্বারা কী বোঝানো হয়েছে?",
+            "options": ["পরোপকারিতা", "সহনশীলতা", "উদারতা", "সংবেদনশীলতা"],
+            "correct": "ক",
+            "explanation": "পরোপকারিতা বোঝানো হয়েছে।"
+        }, {
+            "id": 152,
+            "question": "কার কাজ কেবল টিকে থাকার সুবিধা দেওয়া নয়?",
+            "options": ["ব্যক্তির", "পরিবারের", "গোষ্ঠীর", "সমাজের"],
+            "correct": "ঘ",
+            "explanation": "সমাজের কাজ কেবল টিকে থাকার সুবিধা দেওয়া নয়।"
+        }, {
+            "id": 153,
+            "question": "পূর্ণেন্দু দপ্তিদার একাধারে কী ছিলেন?",
+            "options": ["লেখক ও রাজনীতিবিদ", "শিক্ষক ও সাংবাদিক", "কবি ও চিত্রশিল্পী", "ভক্তার ও সমাজসেবক"],
+            "correct": "খ",
+            "explanation": "পূর্ণেন্দু দপ্তিদার শিক্ষক ও সাংবাদিক ছিলেন।"
+        }, {
+            "id": 154,
+            "question": "মাদাম লোইসেলের স্বামী কোন অফিসের কাজ করেন?",
+            "options": ["শিক্ষা পরিষদ", "স্বাস্থ্য দপ্তর", "ব্যাংক", "রেলওয়ে"],
+            "correct": "ক",
+            "explanation": "মাদাম লোইসেলের স্বামী শিক্ষা পরিষদের কাজ করেন।"
+        }, {
+            "id": 155,
+            "question": "‘নেকলেস’ গল্পে মাটিলদার অক্ষুণির কারণ তার –",
+            "options": ["দারিদ্র্য", "সরলতা", "উচ্চাকাঙ্ক্ষা", "প্রধান্য"],
+            "correct": "গ",
+            "explanation": "মাটিলদার অক্ষুণির কারণ তার উচ্চাকাঙ্ক্ষা।"
+        }, {
+            "id": 156,
+            "question": "মাদাম লোইসেলের ব্যথিত হওয়ার কারণ কী ছিল?",
+            "options": ["বাসকেফর দারিদ্র্য", "পোশাকের অভাব", "স্বামী অবহেলা", "স্বামীর বেকারি"],
+            "correct": "ক",
+            "explanation": "বাসকেফর দারিদ্র্য ছিল তার ব্যথিত হওয়ার কারণ।"
+        }, {
+            "id": 157,
+            "question": "‘নেকলেস’ গল্পের মূল গল্পকারের পুরো নাম কোনটি?",
+            "options": ["Henri-Nicholas-Guy de Maupassant", "Henri-Albert-Guy de Maupassant", "Renri-Nicholas-Guy de Maupassant",
+                "Renri-Albert-Guy de Maupassant"
+            ],
+            "correct": "ক",
+            "explanation": "গী দ্য মোপাসাঁর পুরো নাম Henri-Nicholas-Guy de Maupassant।"
+        }, {
+            "id": 158,
+            "question": "গী দ্য মোপাসাঁ কত সালে মৃত্যুবরণ করেন?",
+            "options": ["১৮৯৩ সালে", "১৮৯৫ সালে", "১৮৯৭ সালে", "১৯০০ সালে"],
+            "correct": "ক",
+            "explanation": "গী দ্য মোপাসাঁ ১৮৯৩ সালে মৃত্যুবরণ করেন।"
+        }, {
+            "id": 159,
+            "question": "লেখক হিসেবে আখতারুজ্জামান ইলিয়াসের বিশেষত্ব হলো –",
+            "options": ["লেখার গুণগত উৎকর্ষ", "রাজনৈতিক সচেতনতা", "সামাজিক বর্ণনা", "ভাষাগত শৈলী"],
+            "correct": "ক",
+            "explanation": "লেখার গুণগত উৎকর্ষ তার বিশেষত্ব।"
+        }, {
+            "id": 160,
+            "question": "‘রেইনকোট’ গল্পে নুরুল হুদার কাকে জড়িয়ে ধরে চুমু খেতে ইচ্ছা করেছিল?",
+            "options": ["পিওনে", "পিলিপালকে", "ছাত্রদের", "ভাইভারকে"],
+            "correct": "ক",
+            "explanation": "পিওনেকে জড়িয়ে ধরে চুমু খেতে ইচ্ছা করেছিল।"
+        }, {
+            "id": 161,
+            "question": "‘রেইনকোট’ গল্পে মিলিটরি ক্যাম্পের অবস্থান কোথায় ছিল?",
+            "options": ["স্টিতয়াম", "লাইনেরি", "কলেজ ভবন", "জিমন্টাশিয়াম"],
+            "correct": "ঘ",
+            "explanation": "জিমন্টাশিয়ামে মিলিটরি ক্যাম্প ছিল।"
+        }, {
+            "id": 162,
+            "question": "পাকিস্তান বাঁচাতে হলে স্কুল-কলেজ থেকে শহিদ মিনার হটাতে হবে – এ নিবেদনটি করেছেন –",
+            "options": ["পিয়ন", "নুরুল হুদা", "প্রিলিপাল", "অফিসার"],
+            "correct": "গ",
+            "explanation": "প্রিলিপাল এই নিবেদনটি করেছেন।"
+        }, {
+            "id": 163,
+            "question": "‘শ্বতু বর্ণন’ কবিতায় প্রথমে কোন ঋতুর বর্ণনা আছে?",
+            "options": ["গ্রীষ্ম", "বর্ণা", "শরৎ", "বসন্ত"],
+            "correct": "ঘ",
+            "explanation": "বসন্ত ঋতুর বর্ণনা প্রথমে আছে।"
+        }, {
+            "id": 164,
+            "question": "‘শ্বতু বর্ণন’ কবিতায় কোন ঋতুর কথা বলা হয়েছে?",
+            "options": ["গ্রীষ্ম", "বসন্ত", "শরৎ", "শীত"],
+            "correct": "খ",
+            "explanation": "বসন্ত ঋতুর কথা বলা হয়েছে।"
+        }, {
+            "id": 165,
+            "question": "‘শ্বতু বর্ণন’ কবিতার প্রথম লাইন কোনটি?",
+            "options": ["প্রথমে বসন্ত ঋতু নবীন পল্লব", "বসন্ত এল ফুল ফুচৈছে", "গ্রীষ্মের রোদে পুড়ি", "শীতের শেখে বসন্ত"],
+            "correct": "ক",
+            "explanation": "‘প্রথমে বসন্ত ঋতু নবীন পল্লব’ – এটি প্রথম লাইন।"
+        }, {
+            "id": 166,
+            "question": "আলাওল আরাকান রাজদরবারে কার দৃষ্টি আকর্ষণ করেন?",
+            "options": ["সুজা", "মাগন ঠাকুর", "শ্রীমন্ত", "কোরেশি মাগন ঠাকুর"],
+            "correct": "ঘ",
+            "explanation": "কোরেশি মাগন ঠাকুরের দৃষ্টি আকর্ষণ করেন।"
+        }, {
+            "id": 167,
+            "question": "কবি আলাওলের রচনায় কোন চেতনা স্পষ্ট?",
+            "options": ["ধর্মীয়", "আধ্যাত্মিক", "নাগরিক", "গ্রামীন"],
+            "correct": "গ",
+            "explanation": "আলাওলের রচনায় নাগরিক চেতনা স্পষ্ট।"
+        }, {
+            "id": 168,
+            "question": "আলাওলের সাহিত্যকর্ম নয় কোনটি?",
+            "options": ["পদ্মাবতী", "লায়লী-মজনু", "সহফল মূলুক বিজু জমাল", "সিকন্দরনামা"],
+            "correct": "খ",
+            "explanation": "‘লায়লী-মজনু’ আলাওলের রচনা নয়।"
+        }, {
+            "id": 169,
+            "question": "‘বিতীষণের প্রতি মেঘনাদ’ কবিতায় অরিনম বলতে কাকে বোঝানো হয়েছে?",
+            "options": ["বিতীষণ", "মেঘনাদ", "রাবণ", "লক্ষণ"],
+            "correct": "খ",
+            "explanation": "অরিনম বলতে মেঘনাদকে বোঝানো হয়েছে।"
+        }, {
+            "id": 170,
+            "question": "লক্ষণকে লক্ষাপুরীতে দেখে মেঘনাদের কী প্রতিক্রিয়া হয়েছে?",
+            "options": ["ভয়", "বিষয়", "আনন্দ", "ক্রোধ"],
+            "correct": "খ",
+            "explanation": "লক্ষণকে দেখে মেঘনাদের বিষয় প্রতিক্রিয়া হয়েছে।"
+        }, {
+            "id": 171,
+            "question": "“হায় তাত, উচিত কি তব এ কাজ?” – মেঘনাদের এই উক্তির মধ্য দিয়ে বিতীষণের কোন কাজটি পছন্দ হয়নি?",
+            "options": ["লক্ষণকে যন্ত্রণাদের প্রবেশে সাহায্য করা", "অস্ত্র লুকিয়ে রাখা", "মন্ত্রণায় যোগ দেওয়া", "প্রাসাদ রক্ষা করা"],
+            "correct": "ক",
+            "explanation": "লক্ষণকে যন্ত্রণাদের প্রবেশে সাহায্য করা কাজটি পছন্দ হয়নি।"
+        }, {
+            "id": 172,
+            "question": "মেঘনাদের মতে, বিতীষণের কোন কাজটি অনুচিত?",
+            "options": ["রাবণকে ত্যাগ করা", "রামের সেবা করা", "লক্ষার সম্পদ নষ্ট করা", "যন্ত্রণাদের প্রবেশে লক্ষণকে সাহায্য করা"],
+            "correct": "ঘ",
+            "explanation": "যন্ত্রণাদের প্রবেশে লক্ষণকে সাহায্য করা অনুচিত।"
+        }, {
+            "id": 173,
+            "question": "‘নিকষা’ কার মা?",
+            "options": ["রাবণের", "রামের", "বিতীষণের", "লক্ষণের"],
+            "correct": "ক",
+            "explanation": "‘নিকষা’ রাবণের মা।"
+        }, {
+            "id": 174,
+            "question": "‘বিতীষণের প্রতি মেঘনাদ’ কবিতায় ‘বাসববিজয়ী’ –",
+            "options": ["বিতীষণ", "রাবণ", "মেঘনাদ", "লক্ষণ"],
+            "correct": "গ",
+            "explanation": "‘বাসববিজয়ী’ হলেন মেঘনাদ।"
+        }, {
+            "id": 175,
+            "question": "‘বিতীষণের প্রতি মেঘনাদ’ কবিতায় ‘তস্কর’ বলা হয়েছে –",
+            "options": ["বিতীষণকে", "লক্ষণকে", "রাবণকে", "রামকে"],
+            "correct": "খ",
+            "explanation": "লক্ষণকে ‘তস্কর’ বলা হয়েছে।"
+        }, {
+            "id": 176,
+            "question": "‘বিতীষণের প্রতি মেঘনাদ’ কবিতায় ‘ধীমান’ বলে কাকে সম্বোধন করা হয়েছে?",
+            "options": ["রাম", "বিতীষণ", "মেঘনাদ", "রাবণ"],
+            "correct": "গ",
+            "explanation": "মেঘনাদকে ‘ধীমান’ বলে সম্বোধন করা হয়েছে।"
+        }, {
+            "id": 177,
+            "question": "রবীন্দ্রনাথ ঠাকুরের প্রথম কাব্যগ্রন্থের নাম কী?",
+            "options": ["বনফুল", "সোনার তরী", "বলাকা", "চিঞা"],
+            "correct": "ক",
+            "explanation": "রবীন্দ্রনাথের প্রথম কাব্যগ্রন্থ ‘বনফুল’।"
+        }, {
+            "id": 178,
+            "question": "‘বিশ্লেষী’ কবিতা প্রথম প্রকাশিত হয় কোন পত্রিকায়?",
+            "options": ["বিজলী", "ধুমকেতু", "লাঙল", "দৈনিক নবযুগ"],
+            "correct": "ক",
+            "explanation": "‘বিশ্লেষী’ কবিতা প্রথম ‘বিজলী’ পত্রিকায় প্রকাশিত হয়।"
+        }, {
+            "id": 179,
+            "question": "‘বিশ্লেষী’ কবিতায় কবি কাকে কুশিশ করেন?",
+            "options": ["ঈশ্বরকে", "প্রকৃতিকে", "মানবতাকে", "শনককে"],
+            "correct": "ঘ",
+            "explanation": "কবি শনককে কুশিশ করেন।"
+        }, {
+            "id": 180,
+            "question": "“আশি দেল যাই যত বন্ধন, যত নিয়ম কানুন শৃঙ্খল” – এই পঙিক্তর মাধ্যমে বোঝানো হয়েছে –",
+            "options": ["কবির কোনো পেরায়া নেই", "তিনি শৃঙ্খলা মানেন না", "তিনি বিশ্লেষী", "তিনি মুক্তিকামী"],
+            "correct": "ক",
+            "explanation": "কবির কোনো পেরায়া নেই – এটিই বোঝানো হয়েছে।"
+        }, {
+            "id": 181,
+            "question": "‘বিশ্লেষী’ কবিতায় অকাল বৈশাখী বাঁধের সাথে তুলনা করা হয়েছে কার সাথে?",
+            "options": ["এলোনার সাথে", "বজ্রের সাথে", "শক্তির সাথে", "সাহসের সাথে"],
+            "correct": "ক",
+            "explanation": "অকাল বৈশাখী বাঁধের সাথে এলোনার তুলনা করা হয়েছে।"
+        }, {
+            "id": 182,
+            "question": "“চির উন্নত মম শির” – কথাটি কার পরিচায়ক?",
+            "options": ["অহংকারের", "শক্তির", "বীরত্বের", "অন্যের সামনে মাথা নত না করার"],
+            "correct": "ঘ",
+            "explanation": "অন্যের সামনে মাথা নত না করার মনোভাবের পরিচায়ক।"
+        }, {
+            "id": 183,
+            "question": "‘সুচেতনা’ কবিতার উৎস কী?",
+            "options": ["মহাপৃথিবী", "ধুসর পাপুলিপি", "বললতা সেন", "সাতটি তারার তিমির"],
+            "correct": "গ",
+            "explanation": "‘সুচেতনা’ কবিতার উৎস বললতা সেন।"
+        }, {
+            "id": 184,
+            "question": "কবির মতে, সুচেতনা কেমন ধারণা?",
+            "options": ["ঘুব কাছে দ্বীপসদৃশ একটি ধারণা", "কান্ননিক দ্বীপসদৃশ একটি ধারণা", "দূরতর দ্বীপসদৃশ একটি ধারণা",
+                "চিরত্ন সত্য দ্বীপসদৃশ একটি ধারণা"
+            ],
+            "correct": "গ",
+            "explanation": "সুচেতনা দূরতর দ্বীপসদৃশ একটি ধারণা।"
+        }, {
+            "id": 185,
+            "question": "জীবন মুক্তির চেতনারগত সত্য কার আলোকে প্রদীপ্ত রাখবে?",
+            "options": ["মানুষের", "পৃথিবীর", "প্রকৃতির", "মহাকালের"],
+            "correct": "খ",
+            "explanation": "পৃথিবীর আলোকে প্রদীপ্ত রাখবে।"
+        }, {
+            "id": 186,
+            "question": "‘সুচেতনা’ কবিতায় কবির মানুষরূপে জন্ম না নেওয়াকে কি মনে হয়েছে কেন?",
+            "options": ["শাজির জন্য", "মুক্তির জন্য", "ব্যক্তিগত ও সামাজিক সংকট প্রত্যক্ষের জন্য", "প্রকৃতির সামরিকধরের জন্য"],
+            "correct": "গ",
+            "explanation": "ব্যক্তিগত ও সামাজিক সংকট প্রত্যক্ষের জন্য।"
+        }, {
+            "id": 187,
+            "question": "কবির নামের কোন বানানটি শুদ্ধ?",
+            "options": ["জসীমউদ্দীন", "জসিমউদ্দীন", "জসীম উদ্দিন", "জসিম উদ্দিন"],
+            "correct": "ক",
+            "explanation": "জসীমউদ্দীন – এটি শুদ্ধ বানান।"
+        }, {
+            "id": 188,
+            "question": "জসীমউদ্দীন কোথায় মৃত্যুবরণ করেন?",
+            "options": ["ফরিদপুর", "কলকাতা", "লন্ডন", "ঢাকায়"],
+            "correct": "ঘ",
+            "explanation": "জসীমউদ্দীন ঢাকায় মৃত্যুবরণ করেন।"
+        }, {
+            "id": 189,
+            "question": "‘প্রতিদান’ কবিতায় কবি কার ঘর বাঁধেন?",
+            "options": ["যে কবির ঘর ভেঙেছে", "গরিবের", "অসহায় মানুষের", "নিজের"],
+            "correct": "ক",
+            "explanation": "যে কবির ঘর ভেঙেছে তার ঘর বাঁধেন।"
+        }, {
+            "id": 190,
+            "question": "“আপন করিতে কাঁদিয়া বেভাই যে মোরে করেছ পর” – পঙিক্ততে কী বোঝানো হয়েছে?",
+            "options": ["ঘৃণা", "দুঃখ", "মানবপ্রীতি", "একাকীত্ব"],
+            "correct": "গ",
+            "explanation": "মানবপ্রীতি বোঝানো হয়েছে।"
+        }, {
+            "id": 191,
+            "question": "‘প্রতিদান’ কবিতায় কে পথের বিবাগী হয়েছেন?",
+            "options": ["কবি স্বয়ং", "শত্রু", "পথিক", "বন্ধু"],
+            "correct": "ক",
+            "explanation": "কবি স্বয়ং পথের বিবাগী হয়েছেন।"
+        }, {
+            "id": 192,
+            "question": "‘প্রতিদান’ কবিতায় কবি কার জন্য দীর্ঘ রজনী জেগে থাকেন?",
+            "options": ["শত্রুর জন্য", "প্রকৃতির জন্য", "কবির ঘুম হরণ করে সে", "পরিবারের জন্য"],
+            "correct": "গ",
+            "explanation": "কবির ঘুম হরণ করে সে – তার জন্য জেগে থাকেন।"
+        }, {
+            "id": 193,
+            "question": "‘প্রতিদান’ কবিতায় কবির বুকে যে আঘাত হয়েছে তার জন্য তিনি কী করেন?",
+            "options": ["কাঁদেন", "প্রতিশোধ নেন", "ঘৃণা করেন", "ভুলে যান"],
+            "correct": "ক",
+            "explanation": "কবি কাঁদেন।"
+        }, {
+            "id": 194,
+            "question": "“যে গেছে বুকে আঘাত হানিয়া তার লাগি আমি কাঁদি” – পঙিক্ত দ্বারা বোঝানো হয়েছে –",
+            "options": ["ক্ষমা", "পরোপকার", "দৈর্ঘ", "ভালোবাসা"],
+            "correct": "খ",
+            "explanation": "পরোপকার বোঝানো হয়েছে।"
+        }, {
+            "id": 195,
+            "question": "“হে কবি, নীরব কেন ফালুন যে এসেছে ধরায়” – এ চরণটিতে ‘নীরব কেন’ বলতে কবির কোন অবস্থা প্রকাশ পেয়েছে?",
+            "options": ["বিষণ্ণতা", "আনন্দ", "উদাসীনতা", "রাগ"],
+            "correct": "গ",
+            "explanation": "উদাসীনতা প্রকাশ পেয়েছে।"
+        }, {
+            "id": 196,
+            "question": "‘তাহারেই পড়ে মনে’ কবিতায় কবি কোন ঋতুর বন্দনা করেছেন?",
+            "options": ["গ্রীষ্ম", "বর্ষা", "শরৎ", "বসন্ত"],
+            "correct": "ঘ",
+            "explanation": "বসন্ত ঋতুর বন্দনা করেছেন।"
+        }, {
+            "id": 197,
+            "question": "“তরী তার এসেছে কি?” – ‘তাহারেই পড়ে মনে’ কবিতায় ‘তরী’ কিসের প্রতীক?",
+            "options": ["বসন্তের", "ভ্রমণের", "আনন্দের", "স্মৃতির"],
+            "correct": "ক",
+            "explanation": "‘তরী’ বসন্তের প্রতীক।"
+        }, {
+            "id": 198,
+            "question": "“বেজেছে কি আগমনী গান?” – উক্তিটিতে কোন বিষয়টি ফুটে উঠেছে?",
+            "options": ["বিরহ", "উদাসীনতা", "দুঃখ", "নিশ্চুহতা"],
+            "correct": "ক",
+            "explanation": "বিরহ বিষয়টি ফুটে উঠেছে।"
+        }, {
+            "id": 199,
+            "question": "‘জীবনের পথে পথে অভিজ্ঞতা কুড়ায়ে প্রচুর’ – কাদের কথা বলা হয়েছে?",
+            "options": ["জলদসু", "মাবিদের", "কবির", "ব্যবসায়ীদের"],
+            "correct": "ক",
+            "explanation": "জলদসুদের কথা বলা হয়েছে।"
+        }, {
+            "id": 200,
+            "question": "ফররুখ আহমদের প্রথম কাব্যগ্রহের নাম কী?",
+            "options": ["হাতেম তাই", "পাথির বাসা", "সাত সাগরের মাঝি", "মুহূর্তের কবিতা"],
+            "correct": "গ",
+            "explanation": "ফররুখ আহমদের প্রথম কাব্যগ্রহ ‘সাত সাগরের মাঝি’।"
+        }, {
+            "id": 201,
+            "question": "কাকে ‘মুসলিম কবিসংসার কবি’ বলা হয়?",
+            "options": ["ফররুখ আহমদকে", "নজরুলকে", "কায়কাবাদকে", "জসীমউদ্দীনকে"],
+            "correct": "ক",
+            "explanation": "ফররুখ আহমদকে ‘মুসলিম কবিসংসার কবি’ বলা হয়।"
+        }, {
+            "id": 202,
+            "question": "নিচের কোনটি ফররুখ আহমদের কাহিনিকাব্য?",
+            "options": ["হরেফর ছড়া", "ছড়ার আসর", "পাখির বাসা", "হাতেম তাই"],
+            "correct": "ঘ",
+            "explanation": "‘হাতেম তাই’ ফররুখ আহমদের কাহিনিকাব্য।"
+        }, {
+            "id": 203,
+            "question": "ফররুখ আহমদের শিশুসাহিত্য বিষয়ক রচনা কোনটি?",
+            "options": ["হরমকর ছড়া", "সাত সাগরের মাঝি", "সিরাজুল মনরা", "মনমকল ও হাতেম"],
+            "correct": "ক",
+            "explanation": "‘হরমকর ছড়া’ শিশুসাহিত্য বিষয়ক রচনা।"
+        }, {
+            "id": 204,
+            "question": "‘ফেক্সফারি ১৯৬৯’ কবিতায় আমাদের চেতনার রঙ –",
+            "options": ["শহিদের রক্তের বুদবুদ", "রক্ত রাজপথ", "একুশের কৃষ্ণচূড়া", "রক্ত মিছিল"],
+            "correct": "গ",
+            "explanation": "একুশের কৃষ্ণচূড়া আমাদের চেতনার রঙ।"
+        }, {
+            "id": 205,
+            "question": "কৃষ্ণচূড়া আমাদের চেতনার রঙ, কারণ এতে রয়েছে –",
+            "options": ["অত্যাচারের পটভূমি", "অতীত ঐতিহ্য", "রঙের সমতা", "ইতিহাসের উল্লীপনা"],
+            "correct": "ক",
+            "explanation": "অত্যাচারের পটভূমি রয়েছে বলেই কৃষ্ণচূড়া আমাদের চেতনার রঙ।"
+        }, {
+            "id": 206,
+            "question": "‘ফেক্সফারি ১৯৬৯’ কবিতায় কৃষ্ণচূড়ার রঙকে কবি কিসের রঙ হিসেবে উল্লেখ করেছেন?",
+            "options": ["মাটি ও মানুষের", "বাঙালির ঐতিহ্য", "বাঙালির চেতনা", "জাতীয় পতাকা"],
+            "correct": "গ",
+            "explanation": "বাঙালির চেতনার রঙ হিসেবে উল্লেখ করেছেন।"
+        }, {
+            "id": 207,
+            "question": "কবিতায় একুশের কৃষ্ণচূড়া আমাদের কিসের রঙ?",
+            "options": ["উল্লাসের", "আনন্দের", "চেতনার", "ঐক্যের"],
+            "correct": "গ",
+            "explanation": "একুশের কৃষ্ণচূড়া আমাদের চেতনার রঙ।"
+        }, {
+            "id": 208,
+            "question": "‘মানবিক বাগান’ বলতে কী বোঝানো হয়েছে?",
+            "options": ["পঙ্ঘবন", "বাস্তবের বিশ্বালতা", "মানবীয় জগৎ", "হরিব উপত্যকা"],
+            "correct": "গ",
+            "explanation": "‘মানবিক বাগান’ বলতে মানবীয় জগৎ বোঝানো হয়েছে।"
+        }, {
+            "id": 209,
+            "question": "‘ফেক্সফারি ১৯৬৯’ কবিতায় ‘মানবিক বাগান’ বলতে কবি বুঝিয়েছেন –",
+            "options": ["মানুষের সহবস্থান", "গোছানো বাংলাদেশ", "সুন্দর জনবসতি", "মনুষ্যত্ব, ন্যায় ও মঙ্গলের জগৎ"],
+            "correct": "ঘ",
+            "explanation": "মনুষ্যত্ব, ন্যায় ও মঙ্গলের জগৎ বুঝিয়েছেন।"
+        }, {
+            "id": 210,
+            "question": "‘ফেক্সফারি ১৯৬৯’ কবিতায় ‘কমলবন’ শব্দটিকে কবি কী হিসেবে ব্যবহার করেছেন?",
+            "options": ["ভাবার্থ", "প্রতীকী অর্থ", "মূল অর্থ", "বিজ্ঞান অর্থ"],
+            "correct": "খ",
+            "explanation": "প্রতীকী অর্থে ব্যবহার করেছেন।"
+        }, {
+            "id": 211,
+            "question": "‘ফেক্সফারি ১৯৬৯’ কবিতায় ‘চতুর্দিকে মানবিক বাগান, কমলবন হচ্ছে –",
+            "options": ["তছনছ", "লুপ্ত", "ধ্বংস", "বিপর্যস্ত"],
+            "correct": "ক",
+            "explanation": "কমলবন হচ্ছে তছনছ।"
+        }, {
+            "id": 212,
+            "question": "‘ফেক্সফারি ১৯৬৯’ কবিতায় ফে শূন্য ক্ল্যাগ তোলে?",
+            "options": ["সালাম", "বরকত", "রফিক", "সালাম"],
+            "correct": "ঘ",
+            "explanation": "সালাম ফে শূন্য ক্ল্যাগ তোলে।"
+        }, {
+            "id": 213,
+            "question": "‘ফেক্সফারি ১৯৬৯’ কবিতায় ঘাতকের খাবার সম্মুখে বুক পাতে কে?",
+            "options": ["সালাম", "শফিউর", "বরকত", "মিতউর"],
+            "correct": "গ",
+            "explanation": "বরকত ঘাতকের খাবার সম্মুখে বুক পাতে।"
+        }, {
+            "id": 214,
+            "question": "সুকান্ত ভট্টাচার্য কোন পত্রিকার সম্পাদক ছিলেন?",
+            "options": ["দৈনিক বাংলা", "দৈনিক স্বাধীনতা", "পূর্বাভাস", "সবুজপত্র"],
+            "correct": "গ",
+            "explanation": "সুকান্ত ভট্টাচার্য ‘পূর্বাভাস’ পত্রিকার সম্পাদক ছিলেন।"
+        }, {
+            "id": 215,
+            "question": "সুকান্ত ভট্টাচার্য ফাসিবিরোধী লেখক শিল্পী সংঘের পক্ষে কোন কাব্যগ্রন্থ সম্পাদনা করেন?",
+            "options": ["মিঠে কড়া", "অভিযান", "হরতাল", "আকাল"],
+            "correct": "ঘ",
+            "explanation": "সুকান্ত ভট্টাচার্য ‘আকাল’ কাব্যগ্রন্থ সম্পাদনা করেন।"
+        }, {
+            "id": 216,
+            "question": "সবচেয়ে কম বয়সে মৃত্যুবরণকারী কবি –",
+            "options": ["জসীমউদ্দীন", "সুকান্ত ভট্টাচার্য", "সুশিষা কামাল", "শামসুর রাহমান"],
+            "correct": "খ",
+            "explanation": "সুকান্ত ভট্টাচার্য সবচেয়ে কম বয়সে মৃত্যুবরণ করেন।"
+        }, {
+            "id": 217,
+            "question": "আঠারো বছর বয়স দুঃসহ কেন?",
+            "options": ["পথের বাধা ভাঙতে চায় বলে", "বাপের বেগ স্টমারের মতো চলে বলে", "প্রাণে অসহ্য যন্ত্রণার কারণে",
+                "স্পর্ধায় মাথা তোলার ঝুঁকির কারণে"
+            ],
+            "correct": "ঘ",
+            "explanation": "স্পর্ধায় মাথা তোলার ঝুঁকির কারণে আঠারো বছর বয়স দুঃসহ।"
+        }, {
+            "id": 218,
+            "question": "‘আঠারো বছর বয়স’ কবিতায় “স্পর্ধায় নেয় মাথা তোলার ঝুঁকি” – তরুণদের –",
+            "options": ["আত্মনির্ভরতা", "দুচতা", "স্বাবলিতা", "আত্মরিতা"],
+            "correct": "ক",
+            "explanation": "আত্মনির্ভরতা প্রকাশ পেয়েছে।"
+        }, {
+            "id": 219,
+            "question": "আঠারো বছর বয়সে অহরহ উক্তি দেয় –",
+            "options": ["কত যন্ত্রণা", "বিরাট দুঃসাহসেরা", "সংশয়েরা", "আনন্দ"],
+            "correct": "খ",
+            "explanation": "বিরাট দুঃসাহসেরা উক্তি দেয়।"
+        }, {
+            "id": 220,
+            "question": "‘এখন যৌবন যার, মিছেল যাবার তার শেষ সময়’ – কার সাথে মিল রয়েছে?",
+            "options": ["পদাঘাতে চায় ভাঙতে পাথর বাধা", "শিহরিত ক্ষণে ক্ষণে", "বাপের বেগে", "অসহ্য যন্ত্রণা"],
+            "correct": "ক",
+            "explanation": "পদাঘাতে চায় ভাঙতে পাথর বাধা – এর সাথে মিল রয়েছে।"
+        }, {
+            "id": 221,
+            "question": "নিচের কোন চরণে কবির মতে ইতিবাচক বক্তব্যের প্রকাশ ঘটেছে?",
+            "options": ["এ বয়স জানে রক্তদানের পুণ্য", "তাজা তাজা প্রাণে অসহ্য যন্ত্রণা", "দুর্দান্ত প্রাণে হাল ঠিকমতো রাখা ভার",
+                "ক্ষত-বিক্ষত হয় সহস্ত প্রাণ"
+            ],
+            "correct": "ক",
+            "explanation": "‘এ বয়স জানে রক্তদানের পুণ্য’ – ইতিবাচক বক্তব্য।"
+        }, {
+            "id": 222,
+            "question": "‘রক্তদানের পুণ্য’ বলতে কবি কী বোঝাতে চেয়েছেন?",
+            "options": ["তারকেণের অগ্রগতি", "মুক্তি ও কল্যাণের সংগ্রাম", "বিপদ মোকাবেলায় ঝুঁকি", "স্বাধীনভাবে চলার ঝুঁকি"],
+            "correct": "খ",
+            "explanation": "মুক্তি ও কল্যাণের সংগ্রাম বোঝাতে চেয়েছেন।"
+        }, {
+            "id": 223,
+            "question": "‘আমি কবিবদন্তির কথা বলছি’ কবিতায় কবির পূর্বপুরুষদের পিঠে কিসের মতো ক্ষত ছিল?",
+            "options": ["কৃষ্ণচূড়া", "রক্তজবা", "পশুর খাবার", "শ্বাপদের"],
+            "correct": "খ",
+            "explanation": "পূর্বপুরুষদের পিঠে রক্তজবার মতো ক্ষত ছিল।"
+        }, {
+            "id": 224,
+            "question": "‘আমি কবিবদন্তির কথা বলছি’ কবিতায় কবির পূর্বপুরুষদের করতলে কী ছিল?",
+            "options": ["রক্তজবা", "পলিমাটির", "শস্যদানার", "ভালোবাসার"],
+            "correct": "খ",
+            "explanation": "পূর্বপুরুষদের করতলে পলিমাটির সৌরভ ছিল।"
+        }, {
+            "id": 225,
+            "question": "“তাঁর করতল পলিমাটির সৌরভ ছিল” – বোঝানো হয়েছে পূর্বপুরুষদের –",
+            "options": ["দাসত্ব", "ভূমিনির্ভরতা", "শ্রমিনষ্টা", "মুক্তিকা সংলগ্নতা"],
+            "correct": "খ",
+            "explanation": "ভূমিনির্ভরতা বোঝানো হয়েছে।"
+        }, {
+            "id": 226,
+            "question": "কবির মতে, কবিতাকে কী বলে অভিহিত করেছেন?",
+            "options": ["অতিক্রান্ত পাহাড়", "উন্মুনের আঙুন", "কবিত জমির শস্যদানা", "পলিমাটির সৌরভ"],
+            "correct": "গ",
+            "explanation": "কবিতাকে কবিত জমির শস্যদানা বলে অভিহিত করেছেন।"
+        }, {
+            "id": 227,
+            "question": "‘আমি কবিবদন্তির কথা বলছি’ কবিতায় কবির মা কিসের কথা বলতেন?",
+            "options": ["সাগরের", "নদীর", "পাহাড়ের", "গাছপালার"],
+            "correct": "খ",
+            "explanation": "কবির মা নদীর কথা বলতেন।"
+        }, {
+            "id": 228,
+            "question": "যে কবিতা শুনতে জানে না সেই মায়ের কোলে শুয়ে কী শুনতে পায় না?",
+            "options": ["গান", "ছড়া", "কবিতা", "গল্প"],
+            "correct": "ঘ",
+            "explanation": "যে কবিতা শুনতে জানে না সে গল্প শুনতে পায় না।"
+        }, {
+            "id": 229,
+            "question": "‘লালসালু’ উপন্যাস ‘বা-হে-মূলক’ বলে কোন দিকের এলাকাকে বোঝানো হয়েছে?",
+            "options": ["উত্তরের", "দক্ষিণের", "পূর্বের", "পশ্চিমের"],
+            "correct": "ক",
+            "explanation": "উত্তরের এলাকাকে বোঝানো হয়েছে।"
+        }, {
+            "id": 230,
+            "question": "‘নিরাকপড়া’ শব্দের অর্থ কী?",
+            "options": ["গুঁড় গুঁড় বৃদ্ধি", "ভাদ্রের শেষ সময়", "বাতাসহীন নিশ্চল অবস্থা", "বৃদ্ধিহীন অবস্থা"],
+            "correct": "গ",
+            "explanation": "‘নিরাকপড়া’ অর্থ বাতাসহীন নিশ্চল অবস্থা।"
+        }, {
+            "id": 231,
+            "question": "‘বেতার দিন’ কার সাথে সংযুক্ত?",
+            "options": ["ঈদ", "পুজো", "বিয়ে", "চাষাবাদ"],
+            "correct": "ঘ",
+            "explanation": "‘বেতার দিন’ চাষাবাদের সাথে সংযুক্ত।"
+        }, {
+            "id": 232,
+            "question": "‘ক্রান্তাবম’ কী?",
+            "options": ["নিশ্চল জমি", "ধানী জমি", "উর্বর জমি", "নিরাক জমি"],
+            "correct": "ক",
+            "explanation": "‘ক্রান্তাবম’ অর্থ নিশ্চল জমি।"
+        }, {
+            "id": 233,
+            "question": "‘রিদ্দ’ শব্দের অর্থ কী?",
+            "options": ["বাসি", "টাটকা", "নরম", "গরম"],
+            "correct": "ক",
+            "explanation": "‘রিদ্দ’ শব্দের অর্থ বাসি।"
+        }, {
+            "id": 234,
+            "question": "সৈয়দ ওয়ালীউল্লাহর সর্বশেষ কর্ম স্থল কোনটি?",
+            "options": ["করাচি", "লন্ডন", "জার্মানি", "প্যারিস"],
+            "correct": "ঘ",
+            "explanation": "সৈয়দ ওয়ালীউল্লাহর সর্বশেষ কর্ম স্থল প্যারিস।"
+        }, {
+            "id": 235,
+            "question": "‘লালসালু’ উপন্যাস প্রথম প্রকাশিত হয় কত সালে?",
+            "options": ["১৯৪৬", "১৯৪৭", "১৯৪৮", "১৯৫০"],
+            "correct": "গ",
+            "explanation": "‘লালসালু’ প্রথম প্রকাশিত হয় ১৯৪৮ সালে।"
+        }, {
+            "id": 236,
+            "question": "‘লালসালু’ উপন্যাসের ফরাসি অনুবাদ কী নামে প্রকাশিত হয়েছিল?",
+            "options": ["Lal Shalu", "Tree Without Roots", "L'arbre sans racines", "L Tribe sans racines"],
+            "correct": "গ",
+            "explanation": "‘লালসালু’র ফরাসি অনুবাদ ‘L'arbre sans racines’ নামে প্রকাশিত হয়।"
+        }, {
+            "id": 237,
+            "question": "‘লালসালু’ উপন্যাসের ইংরেজি অনুবাদ কত সালে প্রকাশিত হয়?",
+            "options": ["১৯৬০ সালে", "১৯৬৭ সালে", "১৯৬১ সালে", "১৯৬৩ সালে"],
+            "correct": "খ",
+            "explanation": "‘লালসালু’র ইংরেজি অনুবাদ ১৯৬৭ সালে প্রকাশিত হয়।"
+        }, {
+            "id": 238,
+            "question": "‘সিরাজউদ্দৌলা’ নাটকে অঙ্গ সংখ্যা কত?",
+            "options": ["তিন", "চার", "পাঁচ", "সাত"],
+            "correct": "খ",
+            "explanation": "‘সিরাজউদ্দৌলা’ নাটকে চারটি অঙ্গ আছে।"
+        }, {
+            "id": 239,
+            "question": "‘সিরাজউদ্দৌলা’ নাটকে কয়টি দৃশ্য আছে?",
+            "options": ["৭টি", "৯টি", "১২টি", "১৩টি"],
+            "correct": "গ",
+            "explanation": "‘সিরাজউদ্দৌলা’ নাটকে ১২টি দৃশ্য আছে।"
+        }, {
+            "id": 240,
+            "question": "‘সিরাজউদ্দৌলা’ নাটকের নায়ক ও প্রধান চরিত্র কোনটি?",
+            "options": ["মির্জাশর", "কনেল ক্লাইভ", "নবাব সিরাজ", "মিরন"],
+            "correct": "গ",
+            "explanation": "নবাব সিরাজ নায়ক ও প্রধান চরিত্র।"
+        }, {
+            "id": 241,
+            "question": "‘সিরাজউদ্দৌলা’ নাটকের প্রথম অঙ্কের প্রথম দৃশ্যের সময়কাল কোনটি?",
+            "options": ["১৯৫৭ সাল, ১৯ জুন", "১৭৫৬ সাল, ২৫ জুন", "১৭৫৬ সাল, ১৯ জুন", "১৭৫৫ সাল, ২৮ জুন"],
+            "correct": "গ",
+            "explanation": "১৭৫৬ সালের ১৯ জুন প্রথম অঙ্কের প্রথম দৃশ্য।"
+        }, {
+            "id": 242,
+            "question": "‘সিরাজউদ্দৌলা’ নাটকের প্রথম অঙ্কের প্রথম দৃশ্যের স্থান?",
+            "options": ["কোট উইলিয়াম জাহাজ", "ঘেসটি বেগমের বাড়ি", "নবাবের দরবার", "কোট উইলিয়াম দূর্গ"],
+            "correct": "ঘ",
+            "explanation": "কোট উইলিয়াম দূর্গ প্রথম দৃশ্যের স্থান।"
+        }, {
+            "id": 243,
+            "question": "ক্রুদ্ধ, জজর, হলওয়েল – এরা যুদ্ধ লগ্ন হয় কোথায়?",
+            "options": ["কালশমবাজার কুঠিতে", "পলাশি আয়কাননে", "কোট উইলিয়াম দুর্গে", "চন্দননগর দুর্গে"],
+            "correct": "গ",
+            "explanation": "কোট উইলিয়াম দুর্গে যুদ্ধ লগ্ন হয়।"
+        }, {
+            "id": 244,
+            "question": "‘Victory or death’ সংলাপটি কার?",
+            "options": ["ওয়াটসন", "জজর হলওয়েলের", "ক্লটনের", "ক্লাইভের"],
+            "correct": "গ",
+            "explanation": "‘Victory or death’ সংলাপটি ক্লটনের।"
+        }, {
+            "id": 245,
+            "question": "‘সিরাজউদ্দৌলা’ নাটকের প্রথম সংলাপটি কার?",
+            "options": ["উমিচাঁদের", "ক্লটনের", "হলওয়েলের", "জিটিশ সৈন্যদের"],
+            "correct": "খ",
+            "explanation": "প্রথম সংলাপটি ক্লটনের।"
+        }, {
+            "id": 246,
+            "question": "‘সিরাজউদ্দৌলা’ নাটকে ক্লটন কাদেরকে প্রাণপণে যুদ্ধ করতে বলেন?",
+            "options": ["ফরাসি মোদ্ধাদের", "নবাবের সৈন্যদের", "হলওয়েলকে", "জিটিশ সৈন্যদের"],
+            "correct": "ঘ",
+            "explanation": "জিটিশ সৈন্যদের প্রাণপণে যুদ্ধ করতে বলেন।"
+        }, {
+            "id": 247,
+            "question": "“কাপুরুষ বাঙালির কথায় যুদ্ধ বন্ধ হবে না” – কার উক্তি?",
+            "options": ["ওয়ালি খান", "হলওয়েল", "ওয়াটসন", "ক্লটন"],
+            "correct": "ঘ",
+            "explanation": "উক্তিটি ক্লটনের।"
+        }, {
+            "id": 248,
+            "question": "‘সিরাজউদ্দৌলা’ নাটকে ওয়ালি খানের সংলাপে প্রকাশ পেয়েছে –",
+            "options": ["স্বজাতিবোধ", "দেশপ্রেম", "ইংরেজিবিদ্বেষ", "বীরত্ব"],
+            "correct": "ক",
+            "explanation": "স্বজাতিবোধ প্রকাশ পেয়েছে।"
+        }, {
+            "id": 249,
+            "question": "“ইংরেজদের হয়ে যুদ্ধ করিছ... বাঙালি কাপুরুষ নয়।” – ওয়ালি খানের উক্তিতে কী প্রকাশ পেয়েছে?",
+            "options": ["দেশপ্রেম", "জাতীয়তাবোধ", "কৃতজ্ঞতা", "সাহস"],
+            "correct": "খ",
+            "explanation": "জাতীয়তাবোধ প্রকাশ পেয়েছে।"
+        }, {
+            "id": 250,
+            "question": "‘সিরাজউদ্দৌলা’ নাটকে ‘কোম্পানি’ শব্দটি দ্বারা কোন কোম্পানিকে নির্দেশ কর?",
+            "options": ["মারাতা বাণিজ্যিক কোম্পানি", "ফরাসি বাণিজ্যিক কোম্পানি", "পর্তুগিজ বাণিজ্যিক কোম্পানি",
+                "ইস্ট ইন্ডিয়া কোম্পানি"
+            ],
+            "correct": "ঘ",
+            "explanation": "ইস্ট ইন্ডিয়া কোম্পানি নির্দেশ কর।"
+        }, {
+            "id": 251,
+            "question": "ওয়ালি খান ইংরেজদের হয়ে যুদ্ধ করেছেন কেন?",
+            "options": ["নবাব হওয়ার জন্য", "বাঙালির বীরত্ব প্রমাণের জন্য", "কোম্পানির অর্থের জন্য", "ক্ষমতার জন্য"],
+            "correct": "গ",
+            "explanation": "কোম্পানির অর্থের জন্য যুদ্ধ করেছেন।"
+        }, {
+            "id": 252,
+            "question": "‘বিদ্রোহী’ কবিতায় কিসের বিরুদ্ধে কবির ক্রোধ ও বিদ্রোহ ঘোষিত হয়েছে?",
+            "options": ["ধর্মের", "উপনিবেশিক শাসনের", "সমাজের", "ভগ শাসকের"],
+            "correct": "খ",
+            "explanation": "উপনিবেশিক শাসনের বিরুদ্ধে বিদ্রোহ ঘোষিত হয়েছে।"
+        }, {
+            "id": 253,
+            "question": "কোন যুগে ‘বিদ্রোহী’ কবিতার মধ্য দিয়ে এক প্রান্তিক কবি কেন্দ্রের আত্মপ্রকাশ ঘটে?",
+            "options": ["প্রাচীন যুগে", "মধ্যযুগে", "মাইকেল যুগে", "রবীন্দ্র যুগে"],
+            "correct": "ঘ",
+            "explanation": "রবীন্দ্র যুগে ‘বিদ্রোহী’ কবিতার মধ্য দিয়ে আত্মপ্রকাশ ঘটে।"
+        }, {
+            "id": 254,
+            "question": "কার পূর্বের নাম জয়ন্ত?",
+            "options": ["ইন্দ্রবীর", "পরশুরামের", "ভীমের", "বিষ্ণুর"],
+            "correct": "ক",
+            "explanation": "ইন্দ্রবীরের পূর্বের নাম জয়ন্ত।"
+        }, {
+            "id": 255,
+            "question": "‘কাটার’ শব্দের অর্থ কী?",
+            "options": ["ভাঙবার অস্ত", "কাটার অস্ত", "কাটা তোলার অস্ত", "কাঠের অস্ত"],
+            "correct": "খ",
+            "explanation": "‘কাটার’ শব্দের অর্থ কাটার অস্ত।"
+        }, {
+            "id": 256,
+            "question": "নৌকা চালানোর জন্য ব্যবহৃত বাঁশের দণ্ডকে কী বলে?",
+            "options": ["লগি", "নরিঠা", "লিত", "লাঠি"],
+            "correct": "ক",
+            "explanation": "নৌকা চালানোর জন্য ব্যবহৃত বাঁশের দণ্ডকে ‘লগি’ বলে।"
+        }, {
+            "id": 257,
+            "question": "হাওড়া সেশন থেকে লেখক কোন জায়গার উদ্দেশ্য যাত্রা শুরু করেছিলেন?",
+            "options": ["পেশোয়ার", "কাবুল", "লাভিকেতাল", "দামেস্ক"],
+            "correct": "ক",
+            "explanation": "পেশোয়ারের উদ্দেশ্য যাত্রা শুরু করেছিলেন।"
+        }, {
+            "id": 258,
+            "question": "জাকারিয়া স্মৃতি কেন বিখ্যাত?",
+            "options": ["ফুলের জন্য", "বহুয়ের জন্য", "মিষ্টির জন্য", "হোটেলের জন্য"],
+            "correct": "ঘ",
+            "explanation": "হোটেলের জন্য জাকারিয়া স্মৃতি বিখ্যাত।"
+        }, {
+            "id": 259,
+            "question": "‘নেটিভ’ অর্থ কী?",
+            "options": ["প্রতিবেশী", "স্বদেশি", "বিবেশি", "শহরবাসী"],
+            "correct": "খ",
+            "explanation": "‘নেটিভ’ অর্থ স্বদেশি।"
+        }, {
+            "id": 260,
+            "question": "‘ফিররফি’ হলো –",
+            "options": ["ইউরোপীয়ান", "ইতালীয়ান", "আমেরিকান", "আফ্রিকান"],
+            "correct": "ক",
+            "explanation": "‘ফিররফি’ ইউরোপীয়ান।"
+        }, {
+            "id": 261,
+            "question": "‘জীবন ও বৃক্ষ’ সংকলিত হয়েছে কোন গ্রন্থ থেকে?",
+            "options": ["যুগবাণী", "সভ্যতা", "রুদ্র-মণ্ডগল", "সংস্কৃতি কথা"],
+            "correct": "ঘ",
+            "explanation": "‘জীবন ও বৃক্ষ’ ‘সংস্কৃতি কথা’ গ্রন্থ থেকে সংকলিত।"
+        }, {
+            "id": 262,
+            "question": "‘গুড় অর্থ’ শব্দগুচ্ছের অর্থ কী?",
+            "options": ["স্বাভাবিক অর্থ", "তাৎপর্যময় অর্থ", "গুরুত্বপূর্ণ অর্থ", "প্রচ্ছন্ন গভীর অর্থ"],
+            "correct": "ঘ",
+            "explanation": "‘গুড় অর্থ’ অর্থ প্রচ্ছন্ন গভীর অর্থ।"
+        }, {
+            "id": 263,
+            "question": "‘অনুভূতির চুমু’ বলতে কী বোঝানো?",
+            "options": ["মনের চোখ", "জ্ঞানের বিকাশ", "মনের সমৃদ্ধি", "জ্ঞানের পরিপূর্ণতা"],
+            "correct": "ক",
+            "explanation": "‘অনুভূতির চুমু’ অর্থ মনের চোখ।"
+        }, {
+            "id": 264,
+            "question": "অরণ্য খবির আশ্রমকে কী বলা হয়?",
+            "options": ["তপোবন", "বৈকুণ্ঠ", "বৃন্দাবন", "বিষ্ণুলোক"],
+            "correct": "ক",
+            "explanation": "অরণ্য খবির আশ্রমকে ‘তপোবন’ বলা হয়।"
+        }, {
+            "id": 265,
+            "question": "মানববাচিত সন্দুণাবলিকে কী বলে?",
+            "options": ["মানবতা", "বিনয়বোধ", "মনুষ্যত্ব", "সৌজন্যবোধ"],
+            "correct": "গ",
+            "explanation": "মানববাচিত সন্দুণাবলিকে ‘মনুষ্যত্ব’ বলে।"
+        }, {
+            "id": 266,
+            "question": "সিরাজগঞ্জ মুসলিম যুবসমাজের উদ্দেশ্যে কত সালে ‘যৌবনের গান’ অভিভাষণটি পাঠ করা হয়েছিল?",
+            "options": ["১৯৩২", "১৯৩৩", "১৯৩৪", "১৯৩৫"],
+            "correct": "ক",
+            "explanation": "১৯৩২ সালে ‘যৌবনের গান’ পাঠ করা হয়েছিল।"
+        }, {
+            "id": 267,
+            "question": "‘যৌবনের গান’ অভিভাষণটি কাদের উদ্দেশ্যে পাঠ করা হয়েছিল?",
+            "options": ["সিরাজগঞ্জবাসীর উদ্দেশ্যে", "মুসলিম যুবসমাজের উদ্দেশ্যে", "দেশবাসীর কল্যাণের উদ্দেশ্যে",
+                "সভায় আগত জনতার উদ্দেশ্যে"
+            ],
+            "correct": "ঘ",
+            "explanation": "সভায় আগত জনতার উদ্দেশ্যে পাঠ করা হয়েছিল।"
+        }, {
+            "id": 268,
+            "question": "কাজী নজরুল ইসলাম ‘যৌবনের গান’ অভিভাষণটি কোথায় পাঠ করেছিলেন?",
+            "options": ["আপ্তগঞ্জে", "মেনাহরগঞ্জে", "সিরাজগঞ্জে", "বোজরগঞ্জে"],
+            "correct": "গ",
+            "explanation": "সিরাজগঞ্জে ‘যৌবনের গান’ পাঠ করেছিলেন।"
+        }, {
+            "id": 269,
+            "question": "‘বিলাসী’ গল্পের প্রতিপাদ্য বিষয় কী?",
+            "options": ["চরিত্রবান মানব-মানবীর প্রেম", "সমাজের বিধি-বিধানের মাহাত্ম্য", "সাপুড়েদের সুখ-দুঃখ",
+                "সাপুড়েদের বিষণ্ণ জীবনকাহিনি"
+            ],
+            "correct": "ক",
+            "explanation": "চরিত্রবান মানব-মানবীর প্রেমই প্রতিপাদ্য বিষয়।"
+        }, {
+            "id": 270,
+            "question": "‘বিলাসী’ গল্পটি কোন সময়ের সামাজিক অসংগতিকে ইলিত করে?",
+            "options": ["আঠারো শতকের", "ঊনিশ শতকের", "বিশ শতকের", "একবিংশ শতকের"],
+            "correct": "গ",
+            "explanation": "বিশ শতকের সামাজিক অসংগতিকে ইলিত করে।"
+        }, {
+            "id": 271,
+            "question": "অতঃপুরে লোকচক্ষুর আড়ালে মেয়েদের আটকে রাখার নিয়মের নাম কী?",
+            "options": ["পর্দা প্রথা", "ধর্মীয় রীতি", "অবেরাধ প্রথা", "বিরোধী রীতি"],
+            "correct": "গ",
+            "explanation": "অবেরাধ প্রথা নামে পরিচিত।"
+        }, {
+            "id": 272,
+            "question": "কোনটি পূর্ণ ও স্বাভাবিক গতিতে অগ্রসর হতে পারে নি?",
+            "options": ["সমাজ", "দেশ", "রাষ্ট্র", "পৃথিবী"],
+            "correct": "ক",
+            "explanation": "সমাজ পূর্ণ ও স্বাভাবিক গতিতে অগ্রসর হতে পারে নি।"
+        }, {
+            "id": 273,
+            "question": "‘রুধির ধারা’ এর সমার্থক শব্দ কোনটি?",
+            "options": ["রক্তপ্রবাহ", "রক্তের বন্যা", "রক্তের বৃষ্টি", "রক্তের গল্প"],
+            "correct": "ক",
+            "explanation": "‘রুধির ধারা’ অর্থ রক্তপ্রবাহ।"
+        }, {
+            "id": 274,
+            "question": "‘বায়স’ শব্দের অর্থ কী?",
+            "options": ["কোকিল", "বক", "চিল", "কাক"],
+            "correct": "ঘ",
+            "explanation": "‘বায়স’ শব্দের অর্থ কাক।"
+        }, {
+            "id": 275,
+            "question": "‘না-ওয়াকিফ’ অর্থ কী?",
+            "options": ["অজ্ঞাত", "জ্ঞাত", "অলক্ষ", "আকিশক"],
+            "correct": "ক",
+            "explanation": "‘না-ওয়াকিফ’ অর্থ অজ্ঞাত।"
+        }, {
+            "id": 276,
+            "question": "‘প্রকৃতির যে ধর্ম মানুষের সে ধর্ম’ – উক্তিটি কার?",
+            "options": ["মোতাহের হোসেন চৌধুরী", "প্রমথ চৌধুরী", "রবীন্দ্রনাথ", "জসীমউদ্দীন"],
+            "correct": "ক",
+            "explanation": "মোতাহের হোসেন চৌধুরীর উক্তি।"
+        }, {
+            "id": 277,
+            "question": "‘আমি বক্তা নহি, আমি কর্মবক্তার দেল’ – এ উক্তির তাৎপর্য কোনটি?",
+            "options": ["কাজে নয়, কথায় বিশ্বাসী", "কথায় নয়, কাজে বিশ্বাসী", "কাজ কথার গুরুত্বপূর্ণ", "কাজ ও কথায় বিশ্বাসী"],
+            "correct": "খ",
+            "explanation": "কথায় নয়, কাজে বিশ্বাসী – এটাই তাৎপর্য।"
+        }, {
+            "id": 278,
+            "question": "‘যৌবনের গান’ প্রবন্ধে ‘ব্যাস ফি’ কারে তাড়া করে?",
+            "options": ["গানের পাখিকে", "আলোর দেবতাকে", "বহু যুবককে", "তারকাদের শতদলকে"],
+            "correct": "গ",
+            "explanation": "বহু যুবককে তাড়া করে।"
+        }, {
+            "id": 279,
+            "question": "‘শক্তিৰ পৈছেন বুিৰুৰ ধাৰাৰ মেতা গোপেন থােকন কাৰা?’ – এই উক্তিটি ‘যৌবনের গান’ প্রবন্ধের কোন অংশ?",
+            "options": ["তরুণদের সম্পর্কে", "ধনীদের সম্পর্কে", "কর্মীদের সম্পর্কে", "বিদ্রোহীদের সম্পর্কে"],
+            "correct": "ক",
+            "explanation": "তরুণদের সম্পর্কে এই উক্তি।"
+        }, {
+            "id": 280,
+            "question": "‘নেকলেস’ গল্পে মাদাম লোইসেলের মন সর্বদা দুঃখ বিরাজ করে কেন?",
+            "options": ["আকাঙ্ক্ষার সাথে প্রাপ্তির মিল না থাকায়", "পরিবারের অভাবের কারণে", "অসুস্থতার জন্য",
+                "বন্ধুদের অবজ্ঞার জন্য"
+            ],
+            "correct": "ক",
+            "explanation": "আকাঙ্ক্ষার সাথে প্রাপ্তির মিল না থাকায় সর্বদা দুঃখ বিরাজ করে।"
+        }, {
+            "id": 281,
+            "question": "‘নেকলেস’ গল্পের মূল ঘটনা কত দিন ধরে চলেছিল?",
+            "options": ["তিনটি", "চারটি", "পাঁচটি", "ছয়টি"],
+            "correct": "ক",
+            "explanation": "তিনটি দিন ধরে মূল ঘটনা চলেছিল।"
+        }, {
+            "id": 282,
+            "question": "‘রেইনকোট’ গল্পে আবদুস সাত্তারের মুখা কোন বিষয়ের প্রভাষক ছিলেন?",
+            "options": ["ইতিহাস", "দর্শন", "অর্থনীতি", "জিওগ্রাফি"],
+            "correct": "ঘ",
+            "explanation": "আবদুস সাত্তার জিওগ্রাফির প্রভাষক ছিলেন।"
+        }, {
+            "id": 283,
+            "question": "‘রেইনকোট’ গল্পে কে একটেলের পাশে থেকে বাংলা বলা শিখেছে?",
+            "options": ["নুরুল হুদা", "পিলিপাল", "মিতুর", "ইসহাক মিয়া"],
+            "correct": "ঘ",
+            "explanation": "ইসহাক মিয়া বাংলা বলা শিখেছে।"
+        }, {
+            "id": 284,
+            "question": "‘শ্বতু বর্ণন’ কবিতায় প্রথমে কোন ঋতুর বর্ণনা আছে?",
+            "options": ["গ্রীষ্ম", "বর্ণা", "শরৎ", "বসন্ত"],
+            "correct": "ঘ",
+            "explanation": "বসন্ত ঋতুর বর্ণনা প্রথমে আছে।"
+        }, {
+            "id": 285,
+            "question": "‘নিদাষ সময়’ বলতে কী বোঝানো হয়েছে?",
+            "options": ["প্রচণ্ড গরমকাল", "বর্ষাকাল", "শীতকাল", "বসন্তকাল"],
+            "correct": "ক",
+            "explanation": "‘নিদাষ সময়’ অর্থ প্রচণ্ড গরমকাল।"
+        }, {
+            "id": 286,
+            "question": "‘শ্বতু বর্ণন’ কবিতায় ‘খাতু বর্ণন’ কবিতার প্রথম লাইন কোনটি?",
+            "options": ["প্রথমে বসন্ত ঋতু নবীন পল্লব", "বসন্ত এল ফুল ফুচৈছে", "গ্রীষ্মের রোদে পুড়ি", "শীতের শেখে বসন্ত"],
+            "correct": "ক",
+            "explanation": "‘প্রথমে বসন্ত ঋতু নবীন পল্লব’ – প্রথম লাইন।"
+        }, {
+            "id": 287,
+            "question": "হিন্দু কলেজের ছাত্র অবস্থায় মধুসূদনের সাহিত্য চর্চার মাধ্যম ছিল কী?",
+            "options": ["বাংলা", "ফরাসি", "ইংরেজি", "সংস্কৃত"],
+            "correct": "গ",
+            "explanation": "মধুসূদন ইংরেজি মাধ্যমে সাহিত্য চর্চা করতেন।"
+        }, {
+            "id": 288,
+            "question": "মাইকেল মধুসূদন দত্ত কোথায় মৃত্যুবরণ করেন?",
+            "options": ["যশোর", "লন্ডন", "কলকাতায়", "প্যারিস"],
+            "correct": "গ",
+            "explanation": "মাইকেল মধুসূদন দত্ত কলকাতায় মৃত্যুবরণ করেন।"
+        }, {
+            "id": 289,
+            "question": "‘বিষাদ সিন্ধু’ কাব্যের রচয়িতা কে?",
+            "options": ["মাইকেল মধুসূদন দত্ত", "রবীন্দ্রনাথ ঠাকুর", "কাজী নজরুল ইসলাম", "জসীমউদ্দীন"],
+            "correct": "ক",
+            "explanation": "‘বিষাদ সিন্ধু’ কাব্যের রচয়িতা মাইকেল মধুসূদন দত্ত।"
+        }, {
+            "id": 290,
+            "question": "‘কবি’ শব্দের প্রতিশব্দ কোনটি?",
+            "options": ["বাগ্মী", "শায়ের", "রচয়িতা", "কাব্যিক"],
+            "correct": "খ",
+            "explanation": "‘কবি’ শব্দের প্রতিশব্দ ‘শায়ের’।"
+        }, {
+            "id": 291,
+            "question": "‘সাহিত্য’ শব্দের ব্যুৎপত্তিগত অর্থ কী?",
+            "options": ["সহিত অর্থাৎ সাথে", "সহিত অর্থাৎ মিলিত", "সাহিত্য অর্থে সহিত্য", "সহিত অর্থে সহিত্য"],
+            "correct": "খ",
+            "explanation": "‘সাহিত্য’ অর্থ সহিত অর্থাৎ মিলিত।"
+        }, {
+            "id": 292,
+            "question": "‘বাংলা ভাষা ও সাহিত্য’ বিষয়ে প্রাচীনতম গ্রন্থ কোনটি?",
+            "options": ["চর্যাপদ", "মঙ্গলকাব্য", "শ্রীকৃষ্ণকীর্তন", "বৈষ্ণব পদাবলী"],
+            "correct": "ক",
+            "explanation": "‘চর্যাপদ’ বাংলা ভাষা ও সাহিত্যের প্রাচীনতম গ্রন্থ।"
+        }, {
+            "id": 293,
+            "question": "‘চর্যাপদ’ এর রচয়িতা কে?",
+            "options": ["লুইপা", "কৃষ্ণপা", "ডোম্বীপা", "সবাই"],
+            "correct": "ঘ",
+            "explanation": "‘চর্যাপদ’ বিভিন্ন পদকর্তা রচিত – লুইপা, কৃষ্ণপা, ডোম্বীপা প্রমুখ।"
+        }, {
+            "id": 294,
+            "question": "‘মঙ্গলকাব্য’ ধারার প্রধান কবি কে?",
+            "options": ["বিপ্রদাস", "মুকুন্দরাম", "ভারতচন্দ্র", "রবীন্দ্রনাথ"],
+            "correct": "খ",
+            "explanation": "‘মঙ্গলকাব্য’ ধারার প্রধান কবি মুকুন্দরাম।"
+        }, {
+            "id": 295,
+            "question": "‘শ্রীকৃষ্ণকীর্তন’ এর রচয়িতা কে?",
+            "options": ["বড়ু চণ্ডীদাস", "দ্বিজ চণ্ডীদাস", "কবি চণ্ডীদাস", "বৈষ্ণব চণ্ডীদাস"],
+            "correct": "ক",
+            "explanation": "‘শ্রীকৃষ্ণকীর্তন’ এর রচয়িতা বড়ু চণ্ডীদাস।"
+        }, {
+            "id": 296,
+            "question": "‘পদ্মাবতী’ কাব্যের রচয়িতা কে?",
+            "options": ["আলাওল", "মুকুন্দরাম", "ভারতচন্দ্র", "কৃষ্ণরাম"],
+            "correct": "ক",
+            "explanation": "‘পদ্মাবতী’ কাব্যের রচয়িতা আলাওল।"
+        }, {
+            "id": 297,
+            "question": "‘কবিকঙ্কণ’ উপাধি কার?",
+            "options": ["ভারতচন্দ্র", "মুকুন্দরাম", "রবীন্দ্রনাথ", "নজরুল"],
+            "correct": "খ",
+            "explanation": "‘কবিকঙ্কণ’ উপাধি মুকুন্দরামের।"
+        }, {
+            "id": 298,
+            "question": "‘রায়গুণাকর’ উপাধি কার?",
+            "options": ["ভারতচন্দ্র", "মুকুন্দরাম", "রবীন্দ্রনাথ", "নজরুল"],
+            "correct": "ক",
+            "explanation": "‘রায়গুণাকর’ উপাধি ভারতচন্দ্রের।"
+        }, {
+            "id": 299,
+            "question": "‘বঙ্গদর্শন’ পত্রিকার সম্পাদক কে ছিলেন?",
+            "options": ["বঙ্কিমচন্দ্র", "রবীন্দ্রনাথ", "সুকান্ত", "প্রমথ"],
+            "correct": "ক",
+            "explanation": "‘বঙ্গদর্শন’ পত্রিকার সম্পাদক বঙ্কিমচন্দ্র চট্টোপাধ্যায় ছিলেন।"
+        }, {
+            "id": 300,
+            "question": "‘সবুজপত্র’ পত্রিকার সম্পাদক কে ছিলেন?",
+            "options": ["বঙ্কিমচন্দ্র", "রবীন্দ্রনাথ", "প্রমথ চৌধুরী", "সুকান্ত"],
+            "correct": "গ",
+            "explanation": "‘সবুজপত্র’ পত্রিকার সম্পাদক প্রমথ চৌধুরী ছিলেন।"
+        }, {
+            "id": 301,
+            "question": "‘কল্লোল’ পত্রিকার সম্পাদক কে ছিলেন?",
+            "options": ["বঙ্কিমচন্দ্র", "রবীন্দ্রনাথ", "প্রমথ চৌধুরী", "দীনেশরঞ্জন দাশ"],
+            "correct": "ঘ",
+            "explanation": "‘কল্লোল’ পত্রিকার সম্পাদক দীনেশরঞ্জন দাশ ছিলেন।"
+        }, {
+            "id": 302,
+            "question": "‘পরিচয়’ পত্রিকার সম্পাদক কে ছিলেন?",
+            "options": ["মোহিতলাল মজুমদার", "বুদ্ধদেব বসু", "জীবনানন্দ", "সুকান্ত"],
+            "correct": "খ",
+            "explanation": "‘পরিচয়’ পত্রিকার সম্পাদক বুদ্ধদেব বসু ছিলেন।"
+        }, {
+            "id": 303,
+            "question": "‘অতএব, ভাষা মানুষের মুখ থেকে কলমে আসে’ – উক্তিটি কার?",
+            "options": ["বঙ্কিমচন্দ্র", "রবীন্দ্রনাথ", "প্রমথ চৌধুরী", "রাজা রামমোহন"],
+            "correct": "গ",
+            "explanation": "প্রমথ চৌধুরী এই উক্তিটি করেছেন।"
+        }, {
+            "id": 304,
+            "question": "‘সাহিত্য থেলা’ প্রবন্ধটি কার রচনা?",
+            "options": ["বঙ্কিমচন্দ্র", "রবীন্দ্রনাথ", "প্রমথ চৌধুরী", "সুকান্ত"],
+            "correct": "গ",
+            "explanation": "‘সাহিত্য থেলা’ প্রবন্ধটি প্রমথ চৌধুরীর রচনা।"
+        }, {
+            "id": 305,
+            "question": "‘বাঙালির বিষ’ কথাটি কোন রচনা থেকে নেওয়া?",
+            "options": ["অপরিচিতা", "বিলাসী", "নেকলেস", "হেইনেকাট"],
+            "correct": "ঘ",
+            "explanation": "‘বাঙালির বিষ’ কথাটি ‘হেইনেকাট’ রচনা থেকে নেওয়া।"
+        }, {
+            "id": 306,
+            "question": "‘রেইনকোট’ গল্পের রচয়িতা কে?",
+            "options": ["শরৎচন্দ্র", "রবীন্দ্রনাথ", "আখতারুজ্জামান ইলিয়াস", "সৈয়দ ওয়ালীউল্লাহ"],
+            "correct": "গ",
+            "explanation": "‘রেইনকোট’ গল্পের রচয়িতা আখতারুজ্জামান ইলিয়াস।"
+        }, {
+            "id": 307,
+            "question": "‘লালসালু’ উপন্যাসের রচয়িতা কে?",
+            "options": ["শরৎচন্দ্র", "রবীন্দ্রনাথ", "সৈয়দ ওয়ালীউল্লাহ", "আখতারুজ্জামান ইলিয়াস"],
+            "correct": "গ",
+            "explanation": "‘লালসালু’ উপন্যাসের রচয়িতা সৈয়দ ওয়ালীউল্লাহ।"
+        }, {
+            "id": 308,
+            "question": "‘অপরিচিতা’ গল্পের রচয়িতা কে?",
+            "options": ["শরৎচন্দ্র", "রবীন্দ্রনাথ", "প্রমথ চৌধুরী", "বঙ্কিমচন্দ্র"],
+            "correct": "ক",
+            "explanation": "‘অপরিচিতা’ গল্পের রচয়িতা শরৎচন্দ্র চট্টোপাধ্যায়।"
+        }, {
+            "id": 309,
+            "question": "‘বিলাসী’ গল্পের রচয়িতা কে?",
+            "options": ["শরৎচন্দ্র", "রবীন্দ্রনাথ", "প্রমথ চৌধুরী", "বঙ্কিমচন্দ্র"],
+            "correct": "ক",
+            "explanation": "‘বিলাসী’ গল্পের রচয়িতা শরৎচন্দ্র চট্টোপাধ্যায়।"
+        }, {
+            "id": 310,
+            "question": "‘নেকলেস’ গল্পের রচয়িতা কে?",
+            "options": ["শরৎচন্দ্র", "রবীন্দ্রনাথ", "গী দ্য মোপাসাঁ", "প্রমথ চৌধুরী"],
+            "correct": "গ",
+            "explanation": "‘নেকলেস’ গল্পের রচয়িতা গী দ্য মোপাসাঁ।"
+        }, {
+            "id": 311,
+            "question": "‘সোনার তরী’ কবিতার রচয়িতা কে?",
+            "options": ["রবীন্দ্রনাথ", "নজরুল", "জসীমউদ্দীন", "সুকান্ত"],
+            "correct": "ক",
+            "explanation": "‘সোনার তরী’ কবিতার রচয়িতা রবীন্দ্রনাথ ঠাকুর।"
+        }, {
+            "id": 312,
+            "question": "‘প্রতিদান’ কবিতার রচয়িতা কে?",
+            "options": ["রবীন্দ্রনাথ", "নজরুল", "জসীমউদ্দীন", "সুকান্ত"],
+            "correct": "গ",
+            "explanation": "‘প্রতিদান’ কবিতার রচয়িতা জসীমউদ্দীন।"
+        }, {
+            "id": 313,
+            "question": "‘তাহারেই পড়ে মনে’ কবিতার রচয়িতা কে?",
+            "options": ["রবীন্দ্রনাথ", "নজরুল", "জসীমউদ্দীন", "সুকান্ত"],
+            "correct": "গ",
+            "explanation": "‘তাহারেই পড়ে মনে’ কবিতার রচয়িতা জসীমউদ্দীন।"
+        }, {
+            "id": 314,
+            "question": "‘আঠারো বছর বয়স’ কবিতার রচয়িতা কে?",
+            "options": ["রবীন্দ্রনাথ", "নজরুল", "জসীমউদ্দীন", "সুকান্ত"],
+            "correct": "ঘ",
+            "explanation": "‘আঠারো বছর বয়স’ কবিতার রচয়িতা সুকান্ত ভট্টাচার্য।"
+        }, {
+            "id": 315,
+            "question": "‘ফেক্সফারি ১৯৬৯’ কবিতার রচয়িতা কে?",
+            "options": ["রবীন্দ্রনাথ", "নজরুল", "জসীমউদ্দীন", "আবু জাফর ওবায়দুল্লাহ"],
+            "correct": "ঘ",
+            "explanation": "‘ফেক্সফারি ১৯৬৯’ কবিতার রচয়িতা আবু জাফর ওবায়দুল্লাহ।"
+        }, {
+            "id": 316,
+            "question": "‘আমি কবিবদন্তির কথা বলছি’ কবিতার রচয়িতা কে?",
+            "options": ["রবীন্দ্রনাথ", "নজরুল", "জসীমউদ্দীন", "আবু জাফর ওবায়দুল্লাহ"],
+            "correct": "ঘ",
+            "explanation": "‘আমি কবিবদন্তির কথা বলছি’ কবিতার রচয়িতা আবু জাফর ওবায়দুল্লাহ।"
+        }, {
+            "id": 317,
+            "question": "‘বিদ্রোহী’ কবিতার রচয়িতা কে?",
+            "options": ["রবীন্দ্রনাথ", "নজরুল", "জসীমউদ্দীন", "সুকান্ত"],
+            "correct": "খ",
+            "explanation": "‘বিদ্রোহী’ কবিতার রচয়িতা কাজী নজরুল ইসলাম।"
+        }, {
+            "id": 318,
+            "question": "‘সিরাজউদ্দৌলা’ নাটকের রচয়িতা কে?",
+            "options": ["রবীন্দ্রনাথ", "নজরুল", "বঙ্কিমচন্দ্র", "শরৎচন্দ্র"],
+            "correct": "গ",
+            "explanation": "‘সিরাজউদ্দৌলা’ নাটকের রচয়িতা বঙ্কিমচন্দ্র চট্টোপাধ্যায়।"
+        }, {
+            "id": 319,
+            "question": "‘বিষাদ সিন্ধু’ কাব্যের রচয়িতা কে?",
+            "options": ["মাইকেল মধুসূদন দত্ত", "রবীন্দ্রনাথ", "নজরুল", "জসীমউদ্দীন"],
+            "correct": "ক",
+            "explanation": "‘বিষাদ সিন্ধু’ কাব্যের রচয়িতা মাইকেল মধুসূদন দত্ত।"
+        }, {
+            "id": 320,
+            "question": "‘মেঘনাদবধ কাব্য’ এর রচয়িতা কে?",
+            "options": ["মাইকেল মধুসূদন দত্ত", "রবীন্দ্রনাথ", "নজরুল", "জসীমউদ্দীন"],
+            "correct": "ক",
+            "explanation": "‘মেঘনাদবধ কাব্য’ এর রচয়িতা মাইকেল মধুসূন দত্ত।"
+        }, {
+            "id": 321,
+            "question": "‘পদ্মা’ কবিতার রচয়িতা কে?",
+            "options": ["রবীন্দ্রনাথ", "নজরুল", "ফররুখ আহমদ", "জসীমউদ্দীন"],
+            "correct": "গ",
+            "explanation": "‘পদ্মা’ কবিতার রচয়িতা ফররুখ আহমদ।"
+        }, {
+            "id": 322,
+            "question": "‘সাত সাগরের মাঝি’ কাব্যগ্রন্থের রচয়িতা কে?",
+            "options": ["রবীন্দ্রনাথ", "নজরুল", "ফররুখ আহমদ", "জসীমউদ্দীন"],
+            "correct": "গ",
+            "explanation": "‘সাত সাগরের মাঝি’ কাব্যগ্রন্থের রচয়িতা ফররুখ আহমদ।"
+        }, {
+            "id": 323,
+            "question": "‘হাতেম তাই’ কাহিনিকাব্যের রচয়িতা কে?",
+            "options": ["রবীন্দ্রনাথ", "নজরুল", "ফররুখ আহমদ", "জসীমউদ্দীন"],
+            "correct": "গ",
+            "explanation": "‘হাতেম তাই’ কাহিনিকাব্যের রচয়িতা ফররুখ আহমদ।"
+        }, {
+            "id": 324,
+            "question": "‘বনফুল’ কাব্যগ্রন্থের রচয়িতা কে?",
+            "options": ["রবীন্দ্রনাথ", "নজরুল", "জসীমউদ্দীন", "সুকান্ত"],
+            "correct": "ক",
+            "explanation": "‘বনফুল’ কাব্যগ্রন্থের রচয়িতা রবীন্দ্রনাথ ঠাকুর।"
+        }, {
+            "id": 325,
+            "question": "‘অগ্নিবীণা’ কাব্যগ্রন্থের রচয়িতা কে?",
+            "options": ["রবীন্দ্রনাথ", "নজরুল", "জসীমউদ্দীন", "সুকান্ত"],
+            "correct": "খ",
+            "explanation": "‘অগ্নিবীণা’ কাব্যগ্রন্থের রচয়িতা কাজী নজরুল ইসলাম।"
+        }, {
+            "id": 326,
+            "question": "‘বলাকা’ কাব্যগ্রন্থের রচয়িতা কে?",
+            "options": ["রবীন্দ্রনাথ", "নজরুল", "জসীমউদ্দীন", "সুকান্ত"],
+            "correct": "ক",
+            "explanation": "‘বলাকা’ কাব্যগ্রন্থের রচয়িতা রবীন্দ্রনাথ ঠাকুর।"
+        }, {
+            "id": 327,
+            "question": "‘সঞ্চয়িতা’ কাব্যগ্রন্থের রচয়িতা কে?",
+            "options": ["রবীন্দ্রনাথ", "নজরুল", "জসীমউদ্দীন", "সুকান্ত"],
+            "correct": "ক",
+            "explanation": "‘সঞ্চয়িতা’ কাব্যগ্রন্থের রচয়িতা রবীন্দ্রনাথ ঠাকুর।"
+        }, {
+            "id": 328,
+            "question": "‘নকশী কাঁথার মাঠ’ কাব্যগ্রন্থের রচয়িতা কে?",
+            "options": ["রবীন্দ্রনাথ", "নজরুল", "জসীমউদ্দীন", "সুকান্ত"],
+            "correct": "গ",
+            "explanation": "‘নকশী কাঁথার মাঠ’ কাব্যগ্রন্থের রচয়িতা জসীমউদ্দীন।"
+        }, {
+            "id": 329,
+            "question": "‘বালুচর’ কাব্যগ্রন্থের রচয়িতা কে?",
+            "options": ["রবীন্দ্রনাথ", "নজরুল", "জসীমউদ্দীন", "সুকান্ত"],
+            "correct": "গ",
+            "explanation": "‘বালুচর’ কাব্যগ্রন্থের রচয়িতা জসীমউদ্দীন।"
+        }, {
+            "id": 330,
+            "question": "‘আকাল’ কাব্যগ্রন্থের রচয়িতা কে?",
+            "options": ["রবীন্দ্রনাথ", "নজরুল", "জসীমউদ্দীন", "সুকান্ত"],
+            "correct": "ঘ",
+            "explanation": "‘আকাল’ কাব্যগ্রন্থের রচয়িতা সুকান্ত ভট্টাচার্য।"
+        }, {
+            "id": 331,
+            "question": "‘মিঠে কড়া’ কাব্যগ্রন্থের রচয়িতা কে?",
+            "options": ["রবীন্দ্রনাথ", "নজরুল", "জসীমউদ্দীন", "সুকান্ত"],
+            "correct": "ঘ",
+            "explanation": "‘মিঠে কড়া’ কাব্যগ্রন্থের রচয়িতা সুকান্ত ভট্টাচার্য।"
+        }, {
+            "id": 332,
+            "question": "‘ছায়ানট’ কাব্যগ্রন্থের রচয়িতা কে?",
+            "options": ["রবীন্দ্রনাথ", "নজরুল", "জসীমউদ্দীন", "সুকান্ত"],
+            "correct": "খ",
+            "explanation": "‘ছায়ানট’ কাব্যগ্রন্থের রচয়িতা কাজী নজরুল ইসলাম।"
+        }, {
+            "id": 333,
+            "question": "‘বিশ্বসাহিত্য কেন্দ্র’ এর প্রতিষ্ঠাতা কে?",
+            "options": ["বঙ্কিমচন্দ্র", "রবীন্দ্রনাথ", "প্রমথ চৌধুরী", "আবদুল্লাহ আবু সায়ীদ"],
+            "correct": "ঘ",
+            "explanation": "‘বিশ্বসাহিত্য কেন্দ্র’ এর প্রতিষ্ঠাতা আবদুল্লাহ আবু সায়ীদ।"
+        }, {
+            "id": 334,
+            "question": "‘স্বাধীনতা তুমি’ কবিতার রচয়িতা কে?",
+            "options": ["রবীন্দ্রনাথ", "নজরুল", "জসীমউদ্দীন", "শামসুর রাহমান"],
+            "correct": "ঘ",
+            "explanation": "‘স্বাধীনতা তুমি’ কবিতার রচয়িতা শামসুর রাহমান।"
+        }, {
+            "id": 335,
+            "question": "‘স্বাধীনতা তুমি’ কবিতায় ‘স্বাধীনতা’ কিসের প্রতীক?",
+            "options": ["আনন্দের", "মুক্তির", "আত্মমর্যাদার", "সবকিছু"],
+            "correct": "গ",
+            "explanation": "‘স্বাধীনতা তুমি’ কবিতায় স্বাধীনতা আত্মমর্যাদার প্রতীক।"
+        }, {
+            "id": 336,
+            "question": "‘আমার ভাইয়ের রক্তে রাঙানো একুশে ফেব্রুয়ারি’ গানের রচয়িতা কে?",
+            "options": ["আবদুল গাফফার চৌধুরী", "রবীন্দ্রনাথ", "নজরুল", "শামসুর রাহমান"],
+            "correct": "ক",
+            "explanation": "‘আমার ভাইয়ের রক্তে রাঙানো একুশে ফেব্রুয়ারি’ গানের রচয়িতা আবদুল গাফফার চৌধুরী।"
+        }, {
+            "id": 337,
+            "question": "‘শহীদ মিনার’ এর স্থপতি কে?",
+            "options": ["আবদুল গাফফার চৌধুরী", "হামিদুর রহমান", "মুনীর চৌধুরী", "শামসুর রাহমান"],
+            "correct": "খ",
+            "explanation": "‘শহীদ মিনার’ এর স্থপতি হামিদুর রহমান।"
+        }, {
+            "id": 338,
+            "question": "‘পাকিস্তানের ইটারনাল অ্যাশোয়ার’ বলতে কাকে বোঝানো হয়েছে?",
+            "options": ["শহরি কসিজার", "জন এফ কেনেডি", "রিচার্ড নিক্সন", "জেরাল্ড ফোর্ড"],
+            "correct": "ক",
+            "explanation": "শহরি কসিজার ‘পাকিস্তানের ইটারনাল অ্যাশোয়ার’ বলেছেন।"
+        }, {
+            "id": 339,
+            "question": "‘মুক্তিযুদ্ধ’ সংক্রান্ত প্রথম উপন্যাস কোনটি?",
+            "options": ["নেকলেস", "লালসালু", "জীবন ও বৃক্ষ", "সূর্য দীঘল বাড়ী"],
+            "correct": "ঘ",
+            "explanation": "‘সূর্য দীঘল বাড়ী’ মুক্তিযুদ্ধ সংক্রান্ত প্রথম উপন্যাস।"
+        }, {
+            "id": 340,
+            "question": "‘সূর্য দীঘল বাড়ী’ উপন্যাসের রচয়িতা কে?",
+            "options": ["আবু ইসহাক", "শামসুর রাহমান", "মুনীর চৌধুরী", "শহীদুল্লাহ কায়সার"],
+            "correct": "ক",
+            "explanation": "‘সূর্য দীঘল বাড়ী’ উপন্যাসের রচয়িতা আবু ইসহাক।"
+        }, {
+            "id": 341,
+            "question": "‘নেকলেস’ গল্পের বাংলা অনুবাদের নাম কী?",
+            "options": ["হার", "মালা", "গলা", "কণ্ঠহার"],
+            "correct": "ক",
+            "explanation": "‘নেকলেস’ গল্পের বাংলা অনুবাদের নাম ‘হার’।"
+        }, {
+            "id": 342,
+            "question": "‘সিরাজউদ্দৌলা’ নাটকের শেষ অঙ্কের শেষ দৃশ্য কোথায় ঘটে?",
+            "options": ["কোট উইলিয়াম", "পলাশি", "মুর্শিদাবাদ", "চন্দননগর"],
+            "correct": "খ",
+            "explanation": "পলাশিতে শেষ অঙ্কের শেষ দৃশ্য ঘটে।"
+        }, {
+            "id": 343,
+            "question": "‘বিলাসী’ গল্পে ‘মহেনের কাহিনী’ বলতে কী বোঝানো হয়েছে?",
+            "options": ["মহানুভবতার কাহিনী", "উদারতার কাহিনী", "ধর্মীয়তার কাহিনী", "নীচতার কাহিনী"],
+            "correct": "ঘ",
+            "explanation": "‘মহেনের কাহিনী’ বলতে নীচতার কাহিনী বোঝানো হয়েছে।"
+        }, {
+            "id": 344,
+            "question": "‘অপরিচিতা’ গল্পে অনুপমের বিয়ে নিয়ে কার খবর মামার কাছে প্রবিষ্ট হয়?",
+            "options": ["মেয়ের", "বাপের অবর্তমানের", "সময়াদারের", "শিক্ষা-দীক্ষার"],
+            "correct": "খ",
+            "explanation": "বাপের অবর্তমানের খবর মামার কাছে প্রবিষ্ট হয়।"
+        }, {
+            "id": 345,
+            "question": "‘নেকলেস’ গল্পে মাদাম লোইসেলের স্বামী কীভাবে হারটি কিনে দেন?",
+            "options": ["নিজের সঞ্চয় থেকে", "বাবার কাছ থেকে", "ব্যাংক লোন নিয়ে", "বন্ধুর কাছে ধার করে"],
+            "correct": "ক",
+            "explanation": "স্বামী নিজের সঞ্চয় থেকে হারটি কিনে দেন।"
+        }, {
+            "id": 346,
+            "question": "‘বিলাসী’ গল্পে ‘গ্রামের মধ্যে মুতুঞ্জের ছিল এমন সুনাম’ – এখানে ‘সুনাম’ শব্দটি কী অর্থে ব্যবহৃত হয়েছে?",
+            "options": ["খ্যাতি", "সম্মান", "দুর্নাম", "প্রতাপ"],
+            "correct": "গ",
+            "explanation": "‘সুনাম’ শব্দটি দুর্নাম অর্থে ব্যবহৃত হয়েছে।"
+        }, {
+            "id": 347,
+            "question": "‘সিরাজউদ্দৌলা’ নাটকে ওয়ালি খানের চরিত্রটি কীসের প্রতীক?",
+            "options": ["বীরত্ব", "স্বজাতিবোধ", "দেশপ্রেম", "ইংরেজিবিদ্বেষ"],
+            "correct": "খ",
+            "explanation": "ওয়ালি খানের চরিত্র স্বজাতিবোধের প্রতীক।"
+        }, {
+            "id": 348,
+            "question": "‘রেইনকোট’ গল্পের মূল প্রতিপাদ্য কী?",
+            "options": ["ভাষা আন্দোলন", "মুক্তিযুদ্ধ", "শিক্ষার গুরুত্ব", "বাংলা ভাষার মর্যাদা"],
+            "correct": "ক",
+            "explanation": "‘রেইনকোট’ গল্পের মূল প্রতিপাদ্য ভাষা আন্দোলন।"
+        }, {
+            "id": 349,
+            "question": "‘লালসালু’ উপন্যাসে মজিদ কীসের প্রতীক?",
+            "options": ["ধর্মীয় নেতৃত্ব", "কুসংস্কার", "অন্ধবিশ্বাস", "পীরভক্তি"],
+            "correct": "খ",
+            "explanation": "মজিদ কুসংস্কারের প্রতীক।"
+        }, {
+            "id": 350,
+            "question": "‘অপরিচিতা’ গল্পে কল্যাণী কীসের প্রতীক?",
+            "options": ["আধুনিক নারী", "অন্ধবিশ্বাস", "মাতৃভক্তি", "স্বাধীনচেতা নারী"],
+            "correct": "ক",
+            "explanation": "কল্যাণী আধুনিক নারীর প্রতীক।"
+        }];
+
+        // ============================================================
+        //  QUIZ ENGINE
+        // ============================================================
+        const STORAGE_KEY = 'bengali_quiz_350_data';
+        const SESSION_SIZE = 25;
+
+        let state = {
+            allIds: [],
+            practiced: [],
+            incorrect: [],
+            currentSession: [],
+            sessionIndex: 0,
+            answered: false,
+            sessionScore: { correct: 0, wrong: 0 },
+            mode: 'practice',
+            reviewQueue: [],
+        };
+
+        let currentQuestionId = null;
+
+        function loadState() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (raw) {
+                    const saved = JSON.parse(raw);
+                    state.practiced = saved.practiced || [];
+                    state.incorrect = saved.incorrect || [];
+                    state.mode = saved.mode || 'practice';
+                }
+            } catch (e) { /* ignore */ }
+            state.allIds = QUESTIONS.map(q => q.id);
+        }
+
+        function saveState() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify({
+                    practiced: state.practiced,
+                    incorrect: state.incorrect,
+                    mode: state.mode,
+                }));
+            } catch (e) { /* ignore */ }
+        }
+
+        function getQuestion(id) {
+            return QUESTIONS.find(q => q.id === id);
+        }
+
+        function getAvailableIds() {
+            const practicedSet = new Set(state.practiced);
+            return state.allIds.filter(id => !practicedSet.has(id));
+        }
+
+        function shuffleArray(arr) {
+            const a = [...arr];
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
+            }
+            return a;
+        }
+
+        function pickSession() {
+            if (state.mode === 'review') {
+                const available = state.incorrect.slice();
+                if (available.length === 0) return [];
+                return shuffleArray(available).slice(0, SESSION_SIZE);
+            } else {
+                const available = getAvailableIds();
+                if (available.length === 0) return [];
+                return shuffleArray(available).slice(0, SESSION_SIZE);
+            }
+        }
+
+        function startNewSession() {
+            const ids = pickSession();
+            if (ids.length === 0) {
+                showEmptyState();
+                return;
+            }
+            state.currentSession = ids;
+            state.sessionIndex = 0;
+            state.answered = false;
+            state.sessionScore = { correct: 0, wrong: 0 };
+            renderQuestion();
+            updateProgress();
+            document.getElementById('resultArea').style.display = 'none';
+            document.getElementById('questionCard').style.display = 'block';
+            document.getElementById('modeTag').textContent = state.mode === 'review' ? 'ভুল পর্যালোচনা' : 'প্র্যাকটিস';
+        }
+
+        function showEmptyState() {
+            document.getElementById('questionCard').style.display = 'none';
+            document.getElementById('resultArea').style.display = 'none';
+            const main = document.getElementById('mainArea');
+            main.innerHTML = `
+            <div class="empty-state">
+              <div class="icon">🎉</div>
+              <h3 style="margin-bottom:8px;">সব প্রশ্ন শেষ!</h3>
+              <p style="color:#8888a0;font-size:15px;">
+                ${state.mode === 'review' ? 'আপনি সব ভুল প্রশ্ন পর্যালোচনা করেছেন।' : 'আপনি সব ৩৫০টি প্রশ্ন অনুশীলন করেছেন।'}
+              </p>
+              <button class="btn" style="margin-top:16px;" onclick="resetAll()">⟳ নতুন করে শুরু</button>
+            </div>
+          `;
+        }
+
+        function renderQuestion() {
+            const ids = state.currentSession;
+            if (!ids || ids.length === 0 || state.sessionIndex >= ids.length) {
+                showResult();
+                return;
+            }
+            const id = ids[state.sessionIndex];
+            currentQuestionId = id;
+            const q = getQuestion(id);
+            if (!q) { showResult(); return; }
+
+            document.getElementById('qNum').textContent = `প্রশ্ন ${state.sessionIndex + 1} / ${ids.length}`;
+            document.getElementById('qStatus').textContent = state.mode === 'review' ? 'পর্যালোচনা মোড' : `সেশন #${getSessionNumber()}`;
+            document.getElementById('qText').textContent = q.question;
+
+            const container = document.getElementById('optionsContainer');
+            container.innerHTML = '';
+            const labels = ['ক', 'খ', 'গ', 'ঘ'];
+            q.options.forEach((opt, idx) => {
+                const div = document.createElement('div');
+                div.className = 'option';
+                div.dataset.index = idx;
+                div.innerHTML = `
+              <span class="label">${labels[idx]}.</span>
+              <span class="text">${opt}</span>
+            `;
+                div.addEventListener('click', () => onOptionClick(idx, div));
+                container.appendChild(div);
+            });
+
+            document.getElementById('explanationBox').style.display = 'none';
+            document.getElementById('explanationBox').textContent = '';
+            state.answered = false;
+            document.getElementById('submitBtn').style.display = 'inline-block';
+            document.getElementById('nextBtn').style.display = 'none';
+            document.getElementById('submitBtn').disabled = false;
+            document.getElementById('submitBtn').textContent = 'জমা দিন';
+
+            document.querySelectorAll('.option').forEach(el => el.classList.remove('selected', 'correct', 'wrong', 'disabled'));
+            selectedOptionIndex = null;
+            updateProgress();
+            saveState();
+        }
+
+        let selectedOptionIndex = null;
+
+        function onOptionClick(index, el) {
+            if (state.answered) return;
+            document.querySelectorAll('.option').forEach(e => e.classList.remove('selected'));
+            el.classList.add('selected');
+            selectedOptionIndex = index;
+        }
+
+        function submitAnswer() {
+            if (state.answered) return;
+            if (selectedOptionIndex === null) {
+                const btn = document.getElementById('submitBtn');
+                btn.textContent = '⚠️ একটি উত্তর নির্বাচন করুন';
+                setTimeout(() => { btn.textContent = 'জমা দিন'; }, 1200);
+                return;
+            }
+            const id = currentQuestionId;
+            const q = getQuestion(id);
+            if (!q) return;
+            const labels = ['ক', 'খ', 'গ', 'ঘ'];
+            const selectedLabel = labels[selectedOptionIndex];
+            const isCorrect = (selectedLabel === q.correct);
+
+            const options = document.querySelectorAll('.option');
+            options.forEach((el, idx) => {
+                el.classList.add('disabled');
+                const label = labels[idx];
+                if (label === q.correct) {
+                    el.classList.add('correct');
+                    el.innerHTML += `<span class="check">✓</span>`;
+                } else if (idx === selectedOptionIndex && !isCorrect) {
+                    el.classList.add('wrong');
+                    el.innerHTML += `<span class="cross">✗</span>`;
+                }
+            });
+
+            state.answered = true;
+            if (isCorrect) {
+                state.sessionScore.correct++;
+                const pos = state.incorrect.indexOf(id);
+                if (pos !== -1) state.incorrect.splice(pos, 1);
+            } else {
+                state.sessionScore.wrong++;
+                if (!state.incorrect.includes(id)) {
+                    state.incorrect.push(id);
+                }
+            }
+            if (!state.practiced.includes(id)) {
+                state.practiced.push(id);
+            }
+
+            if (q.explanation) {
+                const box = document.getElementById('explanationBox');
+                box.textContent = '💡 ' + q.explanation;
+                box.style.display = 'block';
+            }
+
+            document.getElementById('submitBtn').style.display = 'none';
+            document.getElementById('nextBtn').style.display = 'inline-block';
+            document.getElementById('nextBtn').textContent =
+                (state.sessionIndex + 1 < state.currentSession.length) ? 'পরবর্তী →' : 'ফলাফল দেখুন';
+
+            updateProgress();
+            saveState();
+        }
+
+        function nextQuestion() {
+            state.sessionIndex++;
+            if (state.sessionIndex < state.currentSession.length) {
+                selectedOptionIndex = null;
+                renderQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            document.getElementById('questionCard').style.display = 'none';
+            document.getElementById('resultArea').style.display = 'block';
+            const total = state.currentSession.length;
+            const correct = state.sessionScore.correct;
+            const wrong = state.sessionScore.wrong;
+            document.getElementById('sessionScore').textContent = `${correct}/${total}`;
+            document.getElementById('correctCount').textContent = correct;
+            document.getElementById('wrongCountDisplay').textContent = wrong;
+            document.getElementById('sessionLabel').textContent = `সেশন #${getSessionNumber()} · ${state.mode === 'review' ? 'পর্যালোচনা' : 'প্র্যাকটিস'}`;
+            updateProgress();
+        }
+
+        function getSessionNumber() {
+            return Math.floor(state.practiced.length / SESSION_SIZE) + 1;
+        }
+
+        function updateProgress() {
+            const total = state.allIds.length;
+            const done = state.practiced.length;
+            const pct = Math.min(100, Math.round((done / total) * 100));
+            document.getElementById('progressBar').style.width = pct + '%';
+            document.getElementById('progressText').textContent = `${done} / ${total}`;
+            document.getElementById('wrongCount').textContent = `❌ ${state.incorrect.length}`;
+        }
+
+        function startReviewMode() {
+            if (state.incorrect.length === 0) {
+                alert('❌ কোন ভুল প্রশ্ন নেই! আপনি সব প্রশ্ন সঠিক উত্তর দিয়েছেন।');
+                return;
+            }
+            state.mode = 'review';
+            const shuffled = shuffleArray(state.incorrect);
+            state.currentSession = shuffled.slice(0, SESSION_SIZE);
+            state.sessionIndex = 0;
+            state.answered = false;
+            state.sessionScore = { correct: 0, wrong: 0 };
+            document.getElementById('resultArea').style.display = 'none';
+            document.getElementById('questionCard').style.display = 'block';
+            document.getElementById('modeTag').textContent = 'ভুল পর্যালোচনা';
+            renderQuestion();
+            saveState();
+        }
+
+        function switchToPractice() {
+            state.mode = 'practice';
+            const available = getAvailableIds();
+            if (available.length === 0 && state.practiced.length >= state.allIds.length) {
+                showEmptyState();
+                document.getElementById('modeTag').textContent = 'প্র্যাকটিস';
+                saveState();
+                return;
+            }
+            startNewSession();
+            document.getElementById('modeTag').textContent = 'প্র্যাকটিস';
+            saveState();
+        }
+
+        function resetAll() {
+            if (confirm('সকল অগ্রগতি রিসেট করবেন? (সমস্ত প্রশ্ন নতুন করে শুরু হবে)')) {
+                state.practiced = [];
+                state.incorrect = [];
+                state.mode = 'practice';
+                saveState();
+                document.getElementById('resultArea').style.display = 'none';
+                document.getElementById('questionCard').style.display = 'block';
+                // rebuild mainArea if empty state was shown
+                const main = document.getElementById('mainArea');
+                main.innerHTML = `
+              <div class="question-card" id="questionCard">
+                <div class="q-header"><span class="q-number" id="qNum">প্রশ্ন ১</span><span id="qStatus" style="font-size:13px;color:#666680;">২৫ টি প্রশ্ন</span></div>
+                <div class="q-text" id="qText">লোড হচ্ছে...</div>
+                <div class="options" id="optionsContainer"></div>
+                <div id="explanationBox" style="display:none;" class="explanation"></div>
+                <div class="action-row"><button class="btn" id="submitBtn">জমা দিন</button><button class="btn btn-outline" id="nextBtn" style="display:none;">পরবর্তী →</button></div>
+              </div>
+            `;
+                document.getElementById('submitBtn').addEventListener('click', submitAnswer);
+                document.getElementById('nextBtn').addEventListener('click', nextQuestion);
+                startNewSession();
+            }
+        }
+
+        function resetProgress() {
+            if (confirm('অগ্রগতি রিসেট করবেন? (শুধু practiced ও incorrect রিসেট হবে)')) {
+                state.practiced = [];
+                state.incorrect = [];
+                state.mode = 'practice';
+                saveState();
+                document.getElementById('resultArea').style.display = 'none';
+                document.getElementById('questionCard').style.display = 'block';
+                const main = document.getElementById('mainArea');
+                main.innerHTML = `
+              <div class="question-card" id="questionCard">
+                <div class="q-header"><span class="q-number" id="qNum">প্রশ্ন ১</span><span id="qStatus" style="font-size:13px;color:#666680;">২৫ টি প্রশ্ন</span></div>
+                <div class="q-text" id="qText">লোড হচ্ছে...</div>
+                <div class="options" id="optionsContainer"></div>
+                <div id="explanationBox" style="display:none;" class="explanation"></div>
+                <div class="action-row"><button class="btn" id="submitBtn">জমা দিন</button><button class="btn btn-outline" id="nextBtn" style="display:none;">পরবর্তী →</button></div>
+              </div>
+            `;
+                document.getElementById('submitBtn').addEventListener('click', submitAnswer);
+                document.getElementById('nextBtn').addEventListener('click', nextQuestion);
+                startNewSession();
+            }
+        }
+
+        // ============================================================
+        //  INIT
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            loadState();
+            if (state.practiced.length === 0) {
+                state.mode = 'practice';
+                saveState();
+            }
+            // check if all done in practice mode
+            if (state.mode === 'practice' && getAvailableIds().length === 0 && state.practiced.length >= state.allIds
+                .length) {
+                if (state.incorrect.length > 0) {
+                    document.getElementById('questionCard').style.display = 'none';
+                    document.getElementById('resultArea').style.display = 'none';
+                    const main = document.getElementById('mainArea');
+                    main.innerHTML = `
+                <div class="empty-state">
+                  <div class="icon">✅</div>
+                  <h3 style="margin-bottom:8px;">সব প্রশ্ন অনুশীলন সম্পন্ন!</h3>
+                  <p style="color:#8888a0;font-size:15px;margin-bottom:12px;">
+                    আপনার ${state.incorrect.length} টি ভুল প্রশ্ন আছে। পর্যালোচনা করুন।
+                  </p>
+                  <button class="btn" onclick="startReviewMode()">❌ ভুল প্রশ্ন পর্যালোচনা</button>
+                  <button class="btn btn-secondary" style="margin-top:8px;" onclick="resetAll()">⟳ নতুন করে শুরু</button>
+                </div>
+              `;
+                    document.getElementById('modeTag').textContent = 'প্র্যাকটিস';
+                    updateProgress();
+                    return;
+                }
+                document.getElementById('questionCard').style.display = 'none';
+                document.getElementById('resultArea').style.display = 'none';
+                const main = document.getElementById('mainArea');
+                main.innerHTML = `
+              <div class="empty-state">
+                <div class="icon">🏆</div>
+                <h3 style="margin-bottom:8px;">অভিনন্দন! 🎉</h3>
+                <p style="color:#8888a0;font-size:15px;">আপনি সব ৩৫০টি প্রশ্ন সঠিকভাবে অনুশীলন করেছেন!</p>
+                <button class="btn" style="margin-top:16px;" onclick="resetAll()">⟳ নতুন করে শুরু</button>
+              </div>
+            `;
+                document.getElementById('modeTag').textContent = 'প্র্যাকটিস';
+                updateProgress();
+                return;
+            }
+
+            // Normal start
+            startNewSession();
+
+            document.getElementById('submitBtn').addEventListener('click', submitAnswer);
+            document.getElementById('nextBtn').addEventListener('click', nextQuestion);
+            document.getElementById('nextSessionBtn').addEventListener('click', function() {
+                if (state.mode === 'review') {
+                    const reviewedInSession = state.currentSession || [];
+                    const notReviewed = state.incorrect.filter(id => !reviewedInSession.includes(id));
+                    if (notReviewed.length > 0) {
+                        startReviewMode();
+                        return;
+                    } else if (state.incorrect.length > 0) {
+                        alert('আপনি সব ভুল প্রশ্ন পর্যালোচনা করেছেন। এখন প্র্যাকটিস মোডে ফিরে যান।');
+                        switchToPractice();
+                        return;
+                    } else {
+                        switchToPractice();
+                        return;
+                    }
+                } else {
+                    const available = getAvailableIds();
+                    if (available.length === 0) {
+                        if (state.incorrect.length > 0) {
+                            const c = confirm('সব প্রশ্ন শেষ! ভুল প্রশ্নগুলো পর্যালোচনা করবেন?');
+                            if (c) startReviewMode();
+                            else resetAll();
+                        } else {
+                            alert('অভিনন্দন! সব প্রশ্ন সঠিকভাবে অনুশীলন করেছেন!');
+                            resetAll();
+                        }
+                        return;
+                    }
+                    startNewSession();
+                }
+            });
+            document.getElementById('reviewIncorrectBtn').addEventListener('click', function() {
+                if (state.incorrect.length === 0) {
+                    alert('❌ কোন ভুল প্রশ্ন নেই!');
+                    return;
+                }
+                startReviewMode();
+            });
+            document.getElementById('resetProgressBtn').addEventListener('click', resetProgress);
+            document.getElementById('resetAllBtn').addEventListener('click', resetAll);
+            document.getElementById('switchModeBtn').addEventListener('click', function() {
+                if (state.mode === 'practice') {
+                    if (state.incorrect.length === 0) {
+                        alert('❌ কোন ভুল প্রশ্ন নেই!');
+                        return;
+                    }
+                    startReviewMode();
+                } else {
+                    switchToPractice();
+                }
+            });
+        });
+
+        window.startReviewMode = startReviewMode;
+        window.switchToPractice = switchToPractice;
+        window.resetAll = resetAll;
+        window.resetProgress = resetProgress;
+    </script>
+</body>
+</html>

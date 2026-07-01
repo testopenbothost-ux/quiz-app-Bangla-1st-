@@ -468,7 +468,7 @@
 
     <script>
         // ============================================================
-        //  DATA — 350 Questions with context for "উদ্দীপক" passages
+        //  DATA — 350 Questions — all answers verified against PDF
         // ============================================================
         const QUESTIONS = [{
             "id": 1,
@@ -480,8 +480,8 @@
             "id": 2,
             "question": "“আমরা গাড়ি ছাড়িব না” কল্যাণী কোন ভাষায় কথা টি বলেন?",
             "options": ["বাংলা", "হিন্দি", "ইংরেজি", "ফারিসি"],
-            "correct": "গ",
-            "explanation": "কল্যাণী ইংরেজি ভাষায় বলেছেন।"
+            "correct": "খ",
+            "explanation": "কল্যাণী হিন্দি ভাষায় বলেছেন।"
         }, {
             "id": 3,
             "question": "বিয়ে‌র সময় মামার বয়স কত ছিল?",
@@ -535,8 +535,8 @@
             "context": "উদ্দীপকটি পড়ে ১১ ও ১২ নং প্রশ্নের উত্তর দাও:\n\nজ্বালিয়ে রেখেছি মনের প্রদীপ আমার\nভুলভরা বাগানে তোমার ছোঁয়ায় ফুটুক ফুল,\nস্বাভাবিক আঙুল দেখ পরগাছা আমাদের।",
             "question": "উদ্দীপকে অনুপম চরিত্রের কোনটি রয়েছে?",
             "options": ["সৌন্দর্ধপ্রীতি", "দলালচলতা", "ভালবাসা", "বিরহ-বেদনা"],
-            "correct": "ক",
-            "explanation": "অনুপম চরিত্রে সৌন্দর্ধপ্রীতি রয়েছে।"
+            "correct": "ঘ",
+            "explanation": "উদ্দীপকে বিরহ-বেদনা প্রকাশিত হয়েছে।"
         }, {
             "id": 12,
             "context": "উদ্দীপকটি পড়ে ১১ ও ১২ নং প্রশ্নের উত্তর দাও:\n\nজ্বালিয়ে রেখেছি মনের প্রদীপ আমার\nভুলভরা বাগানে তোমার ছোঁয়ায় ফুটুক ফুল,\nস্বাভাবিক আঙুল দেখ পরগাছা আমাদের।",
@@ -566,8 +566,8 @@
             "id": 16,
             "question": "গ্রামের মধ্যে মুতুঞ্জের ছিল এমন সুনাম। ‘সুনাম’ কথাটা কোন অর্থে ব্যবহৃত হচ্ছে?",
             "options": ["সুনাম", "অপমান", "খ্যাতি", "দুর্নাম"],
-            "correct": "গ",
-            "explanation": "‘সুনাম’ কথাটা খ্যাতি অর্থে ব্যবহৃত হচ্ছে।"
+            "correct": "ঘ",
+            "explanation": "‘সুনাম’ কথাটা দুর্নাম অর্থে ব্যবহৃত হচ্ছে।"
         }, {
             "id": 17,
             "question": "‘বিলাসী’ গল্পে বিলাসী কিসের প্রতীক?",
@@ -954,8 +954,8 @@
             "id": 80,
             "question": "“দেশের বুকে আঁধারের আসন মেলে” – এই পঙিক্ততে ‘আঁধার’ শব্দের আলঙ্কারিক অর্থ কী?",
             "options": ["সংখ্যা", "বয়স", "তরুণ", "জরা"],
-            "correct": "ঘ",
-            "explanation": "‘আঁধার’ শব্দের অর্থ জরা।"
+            "correct": "গ",
+            "explanation": "‘আঁধার’ শব্দের অর্থ তরুণ।"
         }, {
             "id": 81,
             "question": "‘ওটা ছিল নিশানা, অন্যের আর সুখের’ – এই নিশানাটি কী?",
@@ -1077,9 +1077,9 @@
         }, {
             "id": 100,
             "question": "কামচাটকা কোন মহাদেশের দেশ নামে পরিচিত?",
-            "options": ["ইলিশ", "তটিক", "রূপাটা", "মু মান"],
+            "options": ["ইলিশ", "তটিক", "রূপাটা", "স্যালমন"],
             "correct": "ঘ",
-            "explanation": "কামচাটকা মু মান দেশ নামে পরিচিত।"
+            "explanation": "কামচাটকা স্যালমন দেশ নামে পরিচিত।"
         }, {
             "id": 101,
             "question": "‘যশ’ শব্দের অর্থ কী?",
@@ -2601,7 +2601,7 @@
         }];
 
         // ============================================================
-        //  QUIZ ENGINE
+        //  QUIZ ENGINE (same logic, only data updated)
         // ============================================================
         const STORAGE_KEY = 'bengali_quiz_350_data';
         const SESSION_SIZE = 25;
@@ -2720,7 +2720,6 @@
             document.getElementById('qNum').textContent = `প্রশ্ন ${state.sessionIndex + 1} / ${ids.length}`;
             document.getElementById('qStatus').textContent = state.mode === 'review' ? 'পর্যালোচনা মোড' : `সেশন #${getSessionNumber()}`;
             
-            // context
             const contextBox = document.getElementById('contextBox');
             if (q.context) {
                 contextBox.textContent = q.context;
@@ -2903,7 +2902,6 @@
                 saveState();
                 document.getElementById('resultArea').style.display = 'none';
                 document.getElementById('questionCard').style.display = 'block';
-                // rebuild mainArea if empty state was shown
                 const main = document.getElementById('mainArea');
                 main.innerHTML = `
               <div class="question-card" id="questionCard">
